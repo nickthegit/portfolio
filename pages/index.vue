@@ -1,14 +1,14 @@
 <template>
   <section class="container">
     <div>
-      <app-logo/>
+      <!-- <app-logo/> -->
       <h1 class="title">
-        nick-john-portfolio
+        Coming Soon
       </h1>
       <h2 class="subtitle">
         Portfolio for Frontend Developer Nick John
       </h2>
-      <div class="links">
+      <!-- <div class="links">
         <a
           href="https://nuxtjs.org/"
           target="_blank"
@@ -17,7 +17,7 @@
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
           class="button--grey">GitHub</a>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
