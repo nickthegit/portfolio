@@ -3,7 +3,7 @@
     <div>
       <!-- <app-logo/> -->
       <h1 class="title">
-        Coming Soon
+        Coming Soon...
       </h1>
       <h2 class="subtitle">
         Portfolio for Frontend Developer Nick John
