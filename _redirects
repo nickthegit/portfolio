@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+http://nick-john-portfolio.netlify.com/* http://www.nickjohn.co.uk/:splat 301!
