@@ -10,9 +10,13 @@
         </header>
         <nav :class="{show: isActive}">
             <ul>
-                <li @click.prevent="toggleNav"><nuxt-link to="/about">About</nuxt-link></li>
+                <li @click.prevent="toggleNav"><nuxt-link to="/">About</nuxt-link></li>
                 <li @click.prevent="toggleNav"><nuxt-link to="/work">Work</nuxt-link></li>
-                <li class="contact" @click.prevent="toggleNav">Contact</li>
+                <li @click.prevent="toggleNav"><nuxt-link to="/blog">Blog</nuxt-link></li>
+                <li class="contact" @click.prevent="toggleNav">Contact<br>
+                <a class="contact-email">hello@nickjohn.co.uk</a>
+                <div class="contact-socials"> cp ld git</div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -91,11 +95,18 @@ export default {
         justify-content: center;
         flex-wrap: wrap;
         flex-direction: column;
-        text-align: center;
+        text-align: right;
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
+        }
+        li {
+            font-family: "Bludhaven", Times, serif;
+            font-size: 5vh;
+            // background: goldenrod;
+            margin: 10px;
+            padding: 10px;
         }
         ul, li, a {
             text-decoration: none;
@@ -104,8 +115,24 @@ export default {
                 text-decoration: none;
             }
         }
+        a {
+            &.nuxt-link-exact-active {
+                text-decoration: underline;
+                &:hover {
+                    color: $white;
+                }
+            }
+            &:hover {
+                color: $grey;
+            }
+        }
         .contact {
-            margin-top: 40px;
+            margin-top: 10vh;
+        }
+        .contact-email, .contact-socials {
+            font-family: 'NexaLight', Arial, Helvetica, sans-serif;
+            font-size: 2.5vh;    
+            color: $grey;        
         }
         transform: translateX(-100%);
         transition: all .3s ease-out;
