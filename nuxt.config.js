@@ -11,6 +11,12 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/TweenMax.min.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js' },
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js' }
     ]
   },
   css: [
@@ -23,7 +29,17 @@ module.exports = {
   /*
   ** Build configuration
   */
+  // plugins: [
+  //   { src: '~/node_modules/waypoints/lib/noframework.waypoints.js', ssr: false }
+  // ],
   build: {
+    vendor: [
+      '~/plugins/greensock-js-shockingly-green/src/uncompressed/TweenMax.js',
+      '~/plugins/scrollmagic/uncompressed/ScrollMagic.js'
+      // '~/plugins/scrollmagic/uncompressed/plugins/animation.gsap.js'
+      // '~/plugins/scrollmagic/uncompressed/plugins/debug.addIndicators.js'
+  
+  ],
     /*
     ** Run ESLint on save
     */
@@ -32,10 +48,16 @@ module.exports = {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          loader: 'eslint-loader'
+          // exclude: /(node_modules)/
         })
       }
     }
-  }
+  },
+  plugins: [
+    // ssr: false to only include it on client-side
+    { src: '~/plugins/global.js', ssr: false },
+    { src: '~/plugins/greensock-js-shockingly-green/src/uncompressed/TweenMax.js', ssr: false },
+    { src: '~/plugins/scrollmagic/uncompressed/ScrollMagic.js', ssr: false }
+  ]
 }

@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="default-container">
     <Navigation />
-    <nuxt/>
+    <div class="content-container">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,26 @@ export default {
 </script>
 
 
-<style>
-
+<style lang="scss">
+    .default-container {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .content-container {
+      transition: all .5s ease-out;
+      transition-delay: 0.1s;
+      width: 100%;
+      // height: 100vh;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  .navOpen {
+    .content-container {
+      transform: translateX(7.5%);
+    }
+  }
 </style>
+

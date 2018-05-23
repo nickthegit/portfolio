@@ -15,11 +15,11 @@
                 <li @click="toggleNav"><nuxt-link to="/blog"><h2>Blog</h2><span></span></nuxt-link></li>
                 <li class="contact">
                 <h2>Contact</h2>
-                <a class="contact-email">hello@nickjohn.co.uk</a>
+                <a class="contact-email" href="mailto:hello@nickjohn.co.uk?subject=Hello%20NJ%2C%20I'm%20diggin'%20ya%20portfolio!&body=">hello@nickjohn.co.uk</a>
                 <div class="contact-socials">
-                    <a href="https://github.com/nickthegit" target="_blank"><img src="~/assets/img/github.svg"></a>
-                    <a href="#" target="_blank"><img src="~/assets/img/linkedin.svg"></a>
-                    <a href="#" target="_blank"><img src="~/assets/img/codepen.svg"></a>
+                    <a href="https://github.com/nickthegit" target="_blank"><Github/></a>
+                    <a href="https://codepen.io/jonserness/" target="_blank"><Codepen/></a>
+                    <a href="https://www.linkedin.com/in/nick-john-a310a753/" target="_blank"><Linkedin/></a>
                 </div>
                 </li>
             </ul>
@@ -29,9 +29,16 @@
 
 <script>
 import Logo from "~/components/Logo.vue";
+import Github from "~/components/icons/Github.vue";
+import Codepen from "~/components/icons/Codepen.vue";
+import Linkedin from "~/components/icons/Linkedin.vue";
+
 export default {
     components: {
-        Logo
+        Logo,
+        Github,
+        Codepen,
+        Linkedin
     },
     data() {
         return {
@@ -163,7 +170,7 @@ export default {
                 } 
                 // text-decoration: underline;
                 &:hover {
-                    color: $white;
+                    color: $black;
                 }
             }
             &:hover {
@@ -186,10 +193,16 @@ export default {
                 height: 22px;
                 display: inline-block;
                 // background: fuchsia;
-                margin: 10px 0 5px 15px;
-                img {
-                    width: 100%;
-                    height: auto;
+                margin: 5px 0 0px 10px;
+                padding: 5px 0 5px 5px;
+                svg {
+                    height: 100%;
+                    stroke: $darkgrey;
+                }
+                &:hover {
+                    svg {
+                        stroke: $grey;
+                    }                    
                 }
             }
         }
@@ -200,32 +213,6 @@ export default {
             transform: translateX(0);
             opacity: 1;
         }
-    }
-    .body-light {
-        .hamburger-inner{
-            background-color: $black;
-            &::before, &::after {
-                background-color: $black;
-            } 
-        }
-        // .brand-logo {
-        //     svg {
-        //         fill: $black;
-        //     }
-        // }
-    }
-    .body-dark {
-        .hamburger-inner{
-            background-color: $white;
-            &::before, &::after {
-                background-color: $white;
-            } 
-        }   
-        // .brand-logo {
-        //     svg {
-        //         fill: $white;
-        //     }
-        // }     
     }
     .navOpen {
         .brand-logo {
@@ -249,7 +236,73 @@ export default {
                 }
             }
         }        
-    }    
+    }  
+    //
+    // IF BODY STYLE CHANGES TO LIGHT
+    //
+    .body-light {
+        .hamburger-inner{
+            background-color: $black;
+            &::before, &::after {
+                background-color: $black;
+            } 
+        }
+        .brand-logo {
+            svg {
+                fill: $black;
+            }
+        }
+        .navOpen {
+            .brand-logo {
+                svg {
+                    fill: $white;
+                }
+            }
+        }
+        nav {
+            background: $black;
+            ul, li, a {
+                color: $white;
+            }
+            span {
+                background: $darkgrey;
+            }
+            a {
+                &.nuxt-link-exact-active {
+                    &:hover {
+                        color: $white;
+                    }
+                }
+                &:hover {
+                    color: $darkgrey;
+                }
+            }
+            .contact-socials {
+                a {
+                    svg {
+                        stroke: $grey;
+                        }
+                    &:hover {
+                        svg {
+                        stroke: $darkgrey;
+                        }                    
+                    }
+                }
+            }
+        }
+    }
+    .navOpen {
+        .body-light {
+            .brand-logo {
+                svg {
+                    fill: $white;
+                }
+            }
+        }
+    }
+    //
+    // RESPONSIVE
+    //
     @include breakpoint(tablet) { 
         nav {
             width: 75%;

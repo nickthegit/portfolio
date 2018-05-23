@@ -4,4 +4,9 @@
 body {
     background: $black;
     color: $white;
+    transition: background 0.5s ease-out;
+    &.body-light {
+        background: $white;
+        color: $black;        
+    }
 }
