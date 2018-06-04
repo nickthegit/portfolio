@@ -33,10 +33,10 @@ export default {
       top: 0;
       left: 0;
     }
-  .navOpen {
-    .content-container {
-      transform: translateX(7.5%);
-    }
-  }
+  // .navOpen {
+  //   .content-container {
+  //     transform: translateX(7.5%);
+  //   }
+  // }
 </style>
 

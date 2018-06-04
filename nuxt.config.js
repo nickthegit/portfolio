@@ -34,10 +34,6 @@ module.exports = {
   // ],
   build: {
     vendor: [
-      '~/plugins/greensock-js-shockingly-green/src/uncompressed/TweenMax.js',
-      '~/plugins/scrollmagic/uncompressed/ScrollMagic.js'
-      // '~/plugins/scrollmagic/uncompressed/plugins/animation.gsap.js'
-      // '~/plugins/scrollmagic/uncompressed/plugins/debug.addIndicators.js'
   
   ],
     /*
@@ -53,11 +49,5 @@ module.exports = {
         })
       }
     }
-  },
-  plugins: [
-    // ssr: false to only include it on client-side
-    { src: '~/plugins/global.js', ssr: false },
-    { src: '~/plugins/greensock-js-shockingly-green/src/uncompressed/TweenMax.js', ssr: false },
-    { src: '~/plugins/scrollmagic/uncompressed/ScrollMagic.js', ssr: false }
-  ]
+  }
 }

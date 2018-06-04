@@ -5,8 +5,14 @@ body {
     background: $black;
     color: $white;
     transition: background 0.5s ease-out;
+    height: 1300vh;
     &.body-light {
         background: $white;
         color: $black;        
     }
 }
+
+a { 
+    color: inherit !important; 
+    text-decoration: none !important;  
+}  

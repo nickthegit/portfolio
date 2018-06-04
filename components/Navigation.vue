@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{navOpen: isActive}" class="menu">
         <header>
             <a href="/" class="brand-logo"><Logo/></a>
             <button class="hamburger hamburger--collapse" :class="{isActive: isActive}" @click="toggleNav" type="button">
@@ -49,16 +49,22 @@ export default {
         toggleNav: function(){
             this.isActive = !this.isActive;
             this.$emit('navState', this.isActive);
+            // var body = document.getElementsByTagName("BODY")[0];
+            // if(this.isActive) {
+            //     document.body.classList.add("navOpen");
+            // } else {
+            //     document.body.classList.remove("navOpen");
+            // }
           // some code to filter users
         }
-    },
-     head() {
-        return {
-            bodyAttrs: {
-                class: this.isActive ? 'navOpen' : ''
-            }
-        }
-    },
+    }
+    // head() {
+    //     return {
+    //         bodyAttrs: {
+    //             class: this.isActive ? 'navOpen' : ''
+    //         }
+    //     }
+    // },
 }
 </script>
 
@@ -291,8 +297,8 @@ export default {
             }
         }
     }
-    .navOpen {
-        .body-light {
+    .body-light {
+        .navOpen {
             .brand-logo {
                 svg {
                     fill: $white;
