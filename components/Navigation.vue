@@ -8,6 +8,7 @@
                 </span>
             </button>
         </header>
+        <div id="nav-close" :class="{show: isActive}" @click="toggleNav"></div>
         <nav :class="{show: isActive}">
             <ul>
                 <li @click="toggleNav"><nuxt-link to="/"><h2>About</h2><span></span></nuxt-link></li>
@@ -113,15 +114,27 @@ export default {
         height: $headerheight / 3;
         // background: teal;
     }
-
+    #nav-close {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        background: transparent;  
+        top: 0;
+        right: 0; 
+        z-index: 70;   
+        transform: translateX(100%);
+        opacity: 0;
+        &.show {
+            transform: translateX(0);
+            opacity: 1;
+        }        
+        
+    }
     nav {
         width: 50%;
         height: 100%;
         position: fixed;
-        // background: gold;
-        // background: $black;
         background: $white;
-        // background: linear-gradient(163deg, rgba($black,1) 0%, rgba($black,1) 35%, rgba(50,50,50,1) 100%);
         top: 0;
         display: flex;
         align-items: center;
@@ -313,6 +326,9 @@ export default {
         nav {
             width: 75%;
         }
+        #nav-close {
+            width: 25%;
+        }
     }
     @include breakpoint(mobile) { 
         .navOpen {
@@ -322,6 +338,9 @@ export default {
         }
         nav {
             width: 100%;
+        }
+        #nav-close {
+            width: 0%;
         }
     }
 </style>

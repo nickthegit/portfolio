@@ -1,11 +1,16 @@
 // ========================================
 // strucutre
 // ========================================
+.home-page {
+    body {
+        height: 1300vh;
+    }
+}
+
 body {
     background: $black;
     color: $white;
     transition: background 0.5s ease-out;
-    height: 1300vh;
     &.body-light {
         background: $white;
         color: $black;        

@@ -31,15 +31,21 @@
 <script>
 
 import TextBlock from "~/components/TextBlock.vue"
+import Github from "~/components/icons/Github.vue";
+import Codepen from "~/components/icons/Codepen.vue";
+import Linkedin from "~/components/icons/Linkedin.vue";
 
 export default {
   components: { 
-    TextBlock
+    TextBlock,
+    Github,
+    Codepen,
+    Linkedin
   },
   data() {
     return {
       name: 'Nick John',
-      tagline: 'Frontend developer<br> at Rosie Lee',
+      tagline: 'UX/UI & Frontend developer<br> at Rosie Lee',
       aboutSections: {
         section1: {
           title: 'Intro',
@@ -115,7 +121,7 @@ export default {
         ]
       },
       contact: {
-        title: 'Contact',
+        title: 'Say hello',
         email: '<a href="mailto:hello@nickjohn.co.uk?subject=Hello">hello@nickjohn.co.uk</a>'
       }
     }
@@ -126,7 +132,7 @@ export default {
       var w = window.innerWidth;
       var h = window.innerHeight;
 
-      var tl = new TimelineLite();
+      var tl = new TimelineLite({ease: Power3.easeOut});
 
       //add a from() tween at the beginning of the timline
       tl.to('.hero-title', 1, { y: "-100vh", autoAlpha:0 } )
@@ -140,7 +146,7 @@ export default {
 
       var section3TL = new TimelineLite();
         section3TL.to('#section2', 1, { y: "-200vh", autoAlpha:0})
-        .staggerFrom(".skill", 0.20, {scale:0.5, autoAlpha:0, ease:Elastic.easeOut, force3D:true}, 0.15, "-=1.25")
+        .staggerFrom(".skill", 0.20, {scale:0.5, autoAlpha:0, force3D:true}, 0.15, "-=1.25")
         .from('#section3 .textBlock', 1, { y: "200vh", autoAlpha:0 }, "-=0.5" ) 
         ;
 
@@ -155,11 +161,10 @@ export default {
         ;
 
       tl.add(section2TL)
-      .add(section3TL, "+=3")
-      .add(section4TL, "+=3")
+      .add(section3TL, "+=2")
+      .add(section4TL, "+=2.5")
       .add(section5TL, "+=1")
       ;
-
      
       var controller = new ScrollMagic.Controller();
 
@@ -167,7 +172,7 @@ export default {
                 // .setClassToggle("body", "body-light") // add class toggle
                 .setTween(tl) // trigger a TweenMax.to tween
 								// .setTween("#section1", 0.5, { y: "-10%", autoAlpha: 0 }) // trigger a TweenMax.to tween
-								.addIndicators({name: "1 (duration: 0)"}) // add indicators (requires plugin)
+								// .addIndicators({name: "1 (duration: 0)"}) // add indicators (requires plugin)
                 .addTo(controller);   
       
       //   var changeBkg = new ScrollMagic.Scene({ triggerElement: "#section2", duration: "100vh" })
@@ -181,11 +186,12 @@ export default {
       // require('scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
     }
   },
-  head: {
-      script: [
-        // { src: 'https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js' }
-        // { src: 'https://cdnjs.cloudflare.com/ajax/libs/rellax/1.6.2/rellax.min.js' }
-      ]
+  head() {
+    return {
+      htmlAttrs: {
+          class: 'home-page'
+      }
+    }
   }
  
 }
@@ -208,6 +214,7 @@ export default {
 
   .main-container {
     /* padding: 80px; */
+    // height: 1300vh;
     width: 100%;
     max-width: 1260px;
     position: absolute;
@@ -306,11 +313,15 @@ export default {
     }   
   }
   #section4 {
+      display: flex;
+      align-items: center;
+      // padding-top: $headerheight;
      .textBlock {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);  
-    }    
+        // position: absolute;
+        // top: 50%;
+        // transform: translateY(-50%);  
+        // padding-bottom: 2%;
+      }  
   }
 
   @include breakpoint(tablet-mobile) {

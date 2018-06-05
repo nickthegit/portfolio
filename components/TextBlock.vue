@@ -46,7 +46,7 @@
             font-size: 2.5vh;
         }
         h2 {
-            font-size: 4.5vh;
+            font-size: 4vh;
             font-family: "Bludhaven", Times, serif;
         }
         @include breakpoint(tablet-mobile) { 
