@@ -13,7 +13,6 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.5/TweenMax.min.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js' },
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js' }
@@ -34,12 +33,15 @@ module.exports = {
   // ],
   build: {
     vendor: [
-  
-  ],
+      'vanilla-tilt',
+      'swiper',
+      'gsap'
+    ],
     /*
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
+      var path = require('path');
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -51,3 +53,8 @@ module.exports = {
     }
   }
 }
+
+// config.resolve.alias['TweenMax'] = path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js')
+// config.resolve.alias['TimelineMax'] = path.resolve('node_modules', 'gsap/src/uncompressed/TimelineMax.js')
+// config.resolve.alias['animation.gsap'] = path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js')
+// config.resolve.alias['debug.addIndicators'] = path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js')

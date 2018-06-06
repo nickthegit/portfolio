@@ -30,17 +30,13 @@
 
 <script>
 
+import TweenMax from 'gsap'
+
 import TextBlock from "~/components/TextBlock.vue"
-import Github from "~/components/icons/Github.vue";
-import Codepen from "~/components/icons/Codepen.vue";
-import Linkedin from "~/components/icons/Linkedin.vue";
 
 export default {
   components: { 
-    TextBlock,
-    Github,
-    Codepen,
-    Linkedin
+    TextBlock
   },
   data() {
     return {
@@ -119,6 +115,7 @@ export default {
             imgUrl: 'http://via.placeholder.com/350x350/d7d7d7'
           }
         ]
+
       },
       contact: {
         title: 'Say hello',
@@ -128,6 +125,7 @@ export default {
   },
   mounted() {
     if (process.browser) {
+
     
       var w = window.innerWidth;
       var h = window.innerHeight;
@@ -314,14 +312,7 @@ export default {
   }
   #section4 {
       display: flex;
-      align-items: center;
-      // padding-top: $headerheight;
-     .textBlock {
-        // position: absolute;
-        // top: 50%;
-        // transform: translateY(-50%);  
-        // padding-bottom: 2%;
-      }  
+      align-items: center; 
   }
 
   @include breakpoint(tablet-mobile) {

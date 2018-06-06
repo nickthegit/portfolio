@@ -50,22 +50,8 @@ export default {
         toggleNav: function(){
             this.isActive = !this.isActive;
             this.$emit('navState', this.isActive);
-            // var body = document.getElementsByTagName("BODY")[0];
-            // if(this.isActive) {
-            //     document.body.classList.add("navOpen");
-            // } else {
-            //     document.body.classList.remove("navOpen");
-            // }
-          // some code to filter users
         }
     }
-    // head() {
-    //     return {
-    //         bodyAttrs: {
-    //             class: this.isActive ? 'navOpen' : ''
-    //         }
-    //     }
-    // },
 }
 </script>
 
