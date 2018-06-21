@@ -7,7 +7,7 @@
             <div class="swiper-wrapper">
                 <!-- Slides -->
 
-                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  >
+                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" :data-theme="project.lightTheme" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  >
                     <h1>{{ project.title }}</h1>
                     <div class="fullscreen-bg" v-if="project.video">
                         <video autoplay loop muted>
@@ -20,13 +20,13 @@
             </div>
 
             <!-- If we need scrollbar -->
-            <div class="swiper-scrollbar"></div>
+            <!-- <div class="swiper-scrollbar"></div> -->
         </div>
 
         <div class="swiper-pagination-nav-wrap">
-            <div class="button-prev"></div>
-            <div class="pagination"></div>
-            <div class="button-next"></div>
+            <div class="button-prev select-none"><ArrowLeft/></div>
+            <div class="pagination select-none"></div>
+            <div class="button-next select-none"><ArrowRight/></div>
         </div>
 
     </div>
@@ -37,21 +37,39 @@
 import VanillaTilt from 'vanilla-tilt'
 import Swiper from 'swiper'
 
+import ArrowRight from '~/components/icons/arrows/ArrowRight.vue'
+import ArrowLeft from '~/components/icons/arrows/ArrowLeft.vue'
+
 export default {
+    components: {
+        ArrowRight,
+        ArrowLeft
+    },
     mounted() {
         if (process.browser) {
             
             const windowWidth = window.innerWidth;
+            let portfolioSlides = document.getElementsByClassName('portfolio-slide')
+            var myArr = Array.from(portfolioSlides);
 
             var mySwiper = new Swiper ('.swiper-container', {
                 // Optional parameters
-                direction: 'vertical',
+                // direction: 'vertical',
                 effect: 'fade',
+                spaceBetween: 40,
                 // mousewheel: {
                 //     invert: false,
                 // },
                 // loop: true,
-
+                on: {
+                    init: function () {
+                        if (myArr[0].dataset.theme == 'true') {
+                            document.body.classList.add("body-light");
+                        } else {
+                            document.body.classList.remove("body-light");
+                        }
+                    },
+                },
                 // If we need pagination
                 pagination: {
                     el: '.pagination',
@@ -74,18 +92,28 @@ export default {
             //     console.log(this);
             // });
 
-            let slideTilt = document.querySelector(".swiper-wrapper");
-            VanillaTilt.init(slideTilt, {max: 25, speed: 400});
 
-            mySwiper.on('slideChangeTransitionStart', function () {
-                // console.log('start');
-                slideTilt.vanillaTilt.destroy();
+            mySwiper.on('slideChange', function () {
+                if (myArr[mySwiper.activeIndex].dataset.theme == 'true') {
+                    document.body.classList.add("body-light");
+                } else {
+                    document.body.classList.remove("body-light");
+                }
             });
 
-            mySwiper.on('slideChangeTransitionEnd', function () {
-                // console.log('end');
-                VanillaTilt.init(slideTilt, {max: 25, speed: 400});
-            });
+
+            // let slideTilt = document.querySelector(".swiper-wrapper");
+            // VanillaTilt.init(slideTilt, {max: 25, speed: 200});
+
+            // mySwiper.on('slideChangeTransitionStart', function () {
+            //     // console.log('start');
+            //     // slideTilt.vanillaTilt.destroy();
+            // });
+
+            // mySwiper.on('slideChangeTransitionEnd', function () {
+            //     // console.log('end');
+            //     // VanillaTilt.init(slideTilt, {max: 25, speed: 200});
+            // });
 
         }
     },  
@@ -97,14 +125,14 @@ export default {
                     title: 'Title here',
                     featureImg: 'http://via.placeholder.com/1920x1080/fbaf5d',
                     video: '',
-                    lightTheme: false
+                    lightTheme: true
                 },
                 {   
                     slug: 'project2',
                     title: 'Title here2',
                     featureImg: 'http://via.placeholder.com/1920x1080/f49ac1',
                     video: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
-                    lightTheme: false
+                    lightTheme: true
                 },
                 {   
                     slug: 'project3',
@@ -118,7 +146,7 @@ export default {
                     title: 'Title here4',
                     featureImg: 'http://via.placeholder.com/1920x1080/d7d7d7',
                     video: '',
-                    lightTheme: false
+                    lightTheme: true
                 }
             ]
         }
@@ -146,12 +174,12 @@ export default {
         background: darkgoldenrod;
     }
     .swiper-pagination-nav-wrap {
-        width: 100%;
+        // width: 100%;
         height: $headerheight;
         position: absolute;
-        // background: green;
+        background: $white;
         bottom: 0;
-        left: 0;
+        right: 0;
         z-index: 99;
         display: flex;
         align-items: center;
@@ -160,19 +188,35 @@ export default {
     .pagination {
         font-family: "Bludhaven", Times, serif;
         width: auto;
+        min-width: 80px;
+        text-align: center;
         font-size: 18px;
-        background: darkmagenta;
+        color: $black;
+        // background: darkmagenta;
+        padding: 10px;
+        box-sizing: border-box;
     }
-    .button-prev {
+    .button-prev, .button-next {
+        padding: 20px;
+        display: flex;
+        box-sizing: border-box;
+        cursor: pointer;
         width: $headerheight;
         height: $headerheight;
-        background: darkgray;
+        svg {
+            display: block;
+            width: 100%;
+            fill: $black;
+        }
     }
-    .button-next {
-        width: $headerheight;
-        height: $headerheight;
-        background: darkkhaki;
-    }
+    // .button-prev {
+    //     // background: darkgray;
+    // }
+    // .button-next {
+    //     width: $headerheight;
+    //     height: $headerheight;
+    //     // background: darkkhaki;
+    // }
     .portfolio-slide {
         background-position: 50%;
         background-repeat: no-repeat;

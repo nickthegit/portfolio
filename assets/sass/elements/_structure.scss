@@ -21,3 +21,9 @@ a {
     color: inherit !important; 
     text-decoration: none !important;  
 }  
+
+div, textarea, select, input, button { outline: none; }
+
+.select-none {
+    user-select: none;
+}
