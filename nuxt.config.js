@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+// const webpack = require('webpack')
 
 module.exports = {
   /*
@@ -28,21 +28,15 @@ module.exports = {
   // plugins: [
   //   { src: '~/node_modules/waypoints/lib/noframework.waypoints.js', ssr: false }
   // ],
+  
+    plugins: [
+      { src: '~/plugins/vue-waypoint', ssr: false }
+    ],
   build: {
     vendor: [
       'vanilla-tilt',
-      'jquery',
       'swiper',
-      'gsap',
-      '@/assets/js/fullPage.js'
-    ],
-    plugins: [
-      // set shortcuts as global for bootstrap
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery'
-      })
+      'gsap'
     ],
     /*
     ** Run ESLint on save

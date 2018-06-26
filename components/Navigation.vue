@@ -13,7 +13,7 @@
             <ul>
                 <li @click="toggleNav"><nuxt-link to="/"><h2>About</h2><span></span></nuxt-link></li>
                 <li @click="toggleNav"><nuxt-link to="/work"><h2>Work</h2><span></span></nuxt-link></li>
-                <li @click="toggleNav"><nuxt-link to="/blog"><h2>Blog</h2><span></span></nuxt-link></li>
+                <!-- <li @click="toggleNav"><nuxt-link to="/blog"><h2>Blog</h2><span></span></nuxt-link></li> -->
                 <li class="contact">
                 <h2>Contact</h2>
                 <a class="contact-email" href="mailto:hello@nickjohn.co.uk?subject=Hello%20NJ%2C%20I'm%20diggin'%20ya%20portfolio!&body=">hello@nickjohn.co.uk</a>

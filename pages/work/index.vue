@@ -7,7 +7,7 @@
             <div class="swiper-wrapper">
                 <!-- Slides -->
 
-                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" :data-theme="project.lightTheme" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  >
+                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" :data-theme="project.lightTheme" @click="toCaseStudy(project.slug)" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  >
                     <h1>{{ project.title }}</h1>
                     <div class="fullscreen-bg" v-if="project.video">
                         <video autoplay loop muted>
@@ -149,6 +149,12 @@ export default {
                     lightTheme: true
                 }
             ]
+        }
+    },
+    methods: {
+        toCaseStudy(slug) {
+            console.log(slug);
+            this.$router.push('/work/' + slug)
         }
     }
 }

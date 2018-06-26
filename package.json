@@ -16,19 +16,22 @@
     "css-loader": "^0.28.11",
     "gsap": "^2.0.1",
     "node-sass": "^4.9.0",
-    "npm": "^6.0.1",
-    "nuxt": "^1.0.0",
-    "sass-loader": "^7.0.1",
+    "npm": "^6.1.0",
+    "nuxt": "^1.4.1",
+    "popmotion": "^8.2.5",
+    "sass-loader": "^7.0.3",
     "scrollmagic": "^2.0.5",
     "swiper": "^4.3.3",
     "vanilla-tilt": "^1.4.1",
-    "vue-style-loader": "^4.1.0"
+    "vue-style-loader": "^4.1.0",
+    "waypoints": "^4.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.5",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "vue-waypoint": "^3.2.2"
   }
 }
