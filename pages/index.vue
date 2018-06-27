@@ -151,7 +151,8 @@ export default {
   mounted() {
     if (process.browser) {
 
-    
+      document.querySelector('body').classList.remove('body-light');
+      
       var w = window.innerWidth;
       var h = window.innerHeight;
 

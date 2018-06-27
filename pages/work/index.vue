@@ -2,19 +2,20 @@
 
     <div class="work-wrap">
 
+        <!-- {{ projectsTwo }} -->
+
         <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
-
-                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" :data-theme="project.lightTheme" @click="toCaseStudy(project.slug)" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  >
-                    <h1>{{ project.title }}</h1>
+                <!-- <div class="swiper-slide portfolio-slide"  v-for="project in projectsTwo" :key="project.index" :data-theme="project.lightTheme" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  > -->
+                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" @click="toCaseStudy(project.id, project.slug)" :data-theme="project.acf.lightdark_toggle" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }"  >
+                    <h1>{{ project.acf.project_title }}</h1>
                     <div class="fullscreen-bg" v-if="project.video">
-                        <video autoplay loop muted>
+                        <!-- <video autoplay loop muted>
                             <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
                             <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.ogg" type="video/ogg">
-                            <!-- Your browser does not support HTML5 video. -->
-                        </video>
+                        </video> -->
                     </div>
                 </div>
             </div>
@@ -36,6 +37,7 @@
 <script>
 import VanillaTilt from 'vanilla-tilt'
 import Swiper from 'swiper'
+import axios from 'axios'
 
 import ArrowRight from '~/components/icons/arrows/ArrowRight.vue'
 import ArrowLeft from '~/components/icons/arrows/ArrowLeft.vue'
@@ -119,42 +121,56 @@ export default {
     },  
     data() {
         return { 
-            projects: [
-                {   
-                    slug: 'project1',
-                    title: 'Title here',
-                    featureImg: 'http://via.placeholder.com/1920x1080/fbaf5d',
-                    video: '',
-                    lightTheme: true
-                },
-                {   
-                    slug: 'project2',
-                    title: 'Title here2',
-                    featureImg: 'http://via.placeholder.com/1920x1080/f49ac1',
-                    video: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
-                    lightTheme: true
-                },
-                {   
-                    slug: 'project3',
-                    title: 'Title here3',
-                    featureImg: 'http://via.placeholder.com/1920x1080/c4df9b',
-                    video: '',
-                    lightTheme: false
-                },
-                {   
-                    slug: 'project4',
-                    title: 'Title here4',
-                    featureImg: 'http://via.placeholder.com/1920x1080/d7d7d7',
-                    video: '',
-                    lightTheme: true
-                }
-            ]
+            // projectsTwo: [],
+            // projects: [
+            //     {   
+            //         id: 25,
+            //         slug: 'project1',
+            //         title: 'Title here',
+            //         featureImg: 'http://via.placeholder.com/1920x1080/fbaf5d',
+            //         video: '',
+            //         lightTheme: true
+            //     },
+            //     {   
+            //         id: 20,
+            //         slug: 'project2',
+            //         title: 'Title here2',
+            //         featureImg: 'http://via.placeholder.com/1920x1080/f49ac1',
+            //         video: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
+            //         lightTheme: true
+            //     },
+            //     {   
+            //         id: 250,
+            //         slug: 'project3',
+            //         title: 'Title here3',
+            //         featureImg: 'http://via.placeholder.com/1920x1080/c4df9b',
+            //         video: '',
+            //         lightTheme: false
+            //     },
+            //     {   
+            //         id: 12,
+            //         slug: 'project4',
+            //         title: 'Title here4',
+            //         featureImg: 'http://via.placeholder.com/1920x1080/d7d7d7',
+            //         video: '',
+            //         lightTheme: true
+            //     }
+            // ]
         }
     },
+    asyncData ({ params }) {
+        return axios.get(`http://nj-admin.co.uk/wp-json/wp/v2/projects`)
+        .then((res) => {
+            // console.log(res.data); 
+            return { 
+                projects: res.data 
+            }
+        })
+    },
     methods: {
-        toCaseStudy(slug) {
-            console.log(slug);
-            this.$router.push('/work/' + slug)
+        toCaseStudy(id, slug) {
+            // console.log(slug + ' ' + id);
+            this.$router.push('/work/' + id + '/' + slug)
         }
     }
 }
@@ -227,6 +243,7 @@ export default {
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
+        cursor: pointer;
         img, h1 {
             position: absolute;
             top: 50%;

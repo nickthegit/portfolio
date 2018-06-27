@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "css-loader": "^0.28.11",
     "gsap": "^2.0.1",
     "node-sass": "^4.9.0",
