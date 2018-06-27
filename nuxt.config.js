@@ -1,3 +1,5 @@
+// const webpack = require('webpack')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -11,11 +13,6 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
-    script: [
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js' },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js' }
     ]
   },
   css: [
@@ -31,6 +28,10 @@ module.exports = {
   // plugins: [
   //   { src: '~/node_modules/waypoints/lib/noframework.waypoints.js', ssr: false }
   // ],
+  
+    plugins: [
+      { src: '~/plugins/vue-waypoint', ssr: false }
+    ],
   build: {
     vendor: [
       'vanilla-tilt',

@@ -1,6 +1,28 @@
 <template>
   <div class="main-container">
-    <div id="trigger"></div>
+
+    <!-- Slider main container -->
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            ...
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <!-- <div id="trigger"></div>
     <section id="section1" class="home-landing">
       <div class="profile-image">
         <img src="~/assets/img/nj-profile.png">
@@ -18,19 +40,22 @@
       <div class="skills-wrap">
         <div class="skill" v-for="skill in aboutSections.skills" :key="skill.index">
           <img :src="skill.imgUrl" alt="">
-          <!-- content -->
+         
         </div>
       </div>
     </section>
     <section id="section4" class="contain">
       <TextBlock :title="contact.title" :h2Content="contact.email"/>
-    </section>
+    </section> -->
+
   </div>
 </template>
 
 <script>
 
 import TweenMax from 'gsap'
+import Swiper from 'swiper'
+// import fullpage from 'fullpage.js'
 
 import TextBlock from "~/components/TextBlock.vue"
 
@@ -126,62 +151,45 @@ export default {
   mounted() {
     if (process.browser) {
 
-    
+      document.querySelector('body').classList.remove('body-light');
+      
       var w = window.innerWidth;
       var h = window.innerHeight;
 
-      var tl = new TimelineLite({ease: Power3.easeOut});
+      // console.log($('#fullpage'));
 
-      //add a from() tween at the beginning of the timline
-      tl.to('.hero-title', 1, { y: "-100vh", autoAlpha:0 } )
-        .to('.profile-image', 1, { y: "-50vh", autoAlpha:0}, "-=0.25")
-        .set("body", {className:"+=body-light"})
-        ;
+      var mySwiper = new Swiper ('.swiper-container', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: false,
+        speed: 600,
+        // grabCursor: true,
+        preventInteractionOnTransition: true,
+        mousewheel: {
+          invert: true,
+          forceToAxis: true,
+          sensitivity: 0.5
+        },
 
-      var section2TL = new TimelineLite();
-        section2TL.from('#section2 .textBlock', 1, { y: "200vh", autoAlpha:0 } )                  
-        ;
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
 
-      var section3TL = new TimelineLite();
-        section3TL.to('#section2', 1, { y: "-200vh", autoAlpha:0})
-        .staggerFrom(".skill", 0.20, {scale:0.5, autoAlpha:0, force3D:true}, 0.15, "-=1.25")
-        .from('#section3 .textBlock', 1, { y: "200vh", autoAlpha:0 }, "-=0.5" ) 
-        ;
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
 
-      var section4TL = new TimelineLite();
-        section4TL.to(".skills-wrap", 1, { scale:0.5, autoAlpha:0, force3D:true} )
-        .to('#section3', 1, { y: "-200vh", autoAlpha:0}, "-=0.25")
-        .set("body", {className:"-=body-light"})
-        ;
+        // And if we need scrollbar
+        scrollbar: {
+          el: '.swiper-scrollbar',
+        },
+      })
 
-      var section5TL = new TimelineLite();
-        section5TL.from("#section4 .textBlock", 1, { autoAlpha:0, force3D:true} )
-        ;
-
-      tl.add(section2TL)
-      .add(section3TL, "+=2")
-      .add(section4TL, "+=2.5")
-      .add(section5TL, "+=1")
-      ;
      
-      var controller = new ScrollMagic.Controller();
 
-      var scene = new ScrollMagic.Scene({ triggerElement: "#trigger", offset: 0, duration: h*12})
-                // .setClassToggle("body", "body-light") // add class toggle
-                .setTween(tl) // trigger a TweenMax.to tween
-								// .setTween("#section1", 0.5, { y: "-10%", autoAlpha: 0 }) // trigger a TweenMax.to tween
-								// .addIndicators({name: "1 (duration: 0)"}) // add indicators (requires plugin)
-                .addTo(controller);   
-      
-      //   var changeBkg = new ScrollMagic.Scene({ triggerElement: "#section2", duration: "100vh" })
-			// 					.setTween(".statement1", { autoAlpha: 1 }) // trigger a TweenMax.to tween
-			// 					.addIndicators({name: "2 (duration: 0)"}) // add indicators (requires plugin)
-			// 					.addTo(controller);     
-
-
-      // var gsap = require("gsap");
-      // ScrollMagic = require('scrollmagic');
-      // require('scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
     }
   },
   head() {
@@ -210,6 +218,8 @@ export default {
   @import "~/assets/sass/base/_variables.scss";
   @import "~/assets/sass/base/_mediaquery.scss";
 
+  @import "~/assets/sass/components/_swiper.scss";
+
   .main-container {
     /* padding: 80px; */
     // height: 1300vh;
@@ -222,18 +232,17 @@ export default {
     overflow: scroll;
     transition: all .3s ease-out;
   }
-  section {
+
+  .swiper-container {
     width: 100%;
     height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    &.contain {
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 1260px;
+    .swiper-slide {
+      &:nth-child(odd) {
+        background: green;
+      }
     }
   }
+
   .home-landing {
       position: fixed;
       top: 0;
