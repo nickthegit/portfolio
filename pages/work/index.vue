@@ -25,9 +25,9 @@
         </div>
 
         <div class="swiper-pagination-nav-wrap">
-            <div class="button-prev select-none"><ArrowLeft/></div>
+            <div class="button-prev select-none"><arrowleft/></div>
             <div class="pagination select-none"></div>
-            <div class="button-next select-none"><ArrowRight/></div>
+            <div class="button-next select-none"><arrowright/></div>
         </div>
 
     </div>
@@ -39,13 +39,13 @@ import VanillaTilt from 'vanilla-tilt'
 import Swiper from 'swiper'
 import axios from 'axios'
 
-import ArrowRight from '~/components/icons/arrows/arrowright.vue'
-import ArrowLeft from '~/components/icons/arrows/arrowleft.vue'
+import arrowright from '~/components/icons/arrows/arrowright.vue'
+import arrowleft from '~/components/icons/arrows/arrowleft.vue'
 
 export default {
     components: {
-        ArrowRight,
-        ArrowLeft
+        arrowright,
+        arrowleft
     },
     mounted() {
         if (process.browser) {

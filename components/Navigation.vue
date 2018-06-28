@@ -1,7 +1,7 @@
 <template>
     <div :class="{navOpen: isActive}" class="menu">
         <header>
-            <a href="/" class="brand-logo"><Logo/></a>
+            <a href="/" class="brand-logo"><logo/></a>
             <button class="hamburger hamburger--collapse" :class="{isActive: isActive}" @click="toggleNav" type="button">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
@@ -18,9 +18,9 @@
                 <h2>Contact</h2>
                 <a class="contact-email" href="mailto:hello@nickjohn.co.uk?subject=Hello%20NJ%2C%20I'm%20diggin'%20ya%20portfolio!&body=">hello@nickjohn.co.uk</a>
                 <div class="contact-socials">
-                    <a href="https://github.com/nickthegit" target="_blank"><Github/></a>
-                    <a href="https://codepen.io/jonserness/" target="_blank"><Codepen/></a>
-                    <a href="https://www.linkedin.com/in/nick-john-a310a753/" target="_blank"><Linkedin/></a>
+                    <a href="https://github.com/nickthegit" target="_blank"><github/></a>
+                    <a href="https://codepen.io/jonserness/" target="_blank"><codepen/></a>
+                    <a href="https://www.linkedin.com/in/nick-john-a310a753/" target="_blank"><linkedin/></a>
                 </div>
                 </li>
             </ul>
@@ -29,17 +29,17 @@
 </template>
 
 <script>
-import Logo from "~/components/logo.vue";
-import Github from "~/components/icons/github.vue";
-import Codepen from "~/components/icons/codepen.vue";
-import Linkedin from "~/components/icons/linkedin.vue";
+import logo from "~/components/logo.vue";
+import github from "~/components/icons/github.vue";
+import codepen from "~/components/icons/codepen.vue";
+import linkedin from "~/components/icons/linkedin.vue";
 
 export default {
     components: {
-        Logo,
-        Github,
-        Codepen,
-        Linkedin
+        logo,
+        github,
+        codepen,
+        linkedin
     },
     data() {
         return {

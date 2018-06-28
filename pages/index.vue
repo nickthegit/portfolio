@@ -58,11 +58,11 @@ import TweenMax from 'gsap'
 import Swiper from 'swiper'
 // import fullpage from 'fullpage.js'
 
-import TextBlock from "~/components/textblock.vue"
+import textblock from "~/components/textblock.vue"
 
 export default {
   components: { 
-    TextBlock
+    textblock
   },
   data() {
     return {
