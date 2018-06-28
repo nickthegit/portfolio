@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue";
-import Github from "~/components/icons/Github.vue";
-import Codepen from "~/components/icons/Codepen.vue";
-import Linkedin from "~/components/icons/Linkedin.vue";
+import Logo from "~/components/logo.vue";
+import Github from "~/components/icons/github.vue";
+import Codepen from "~/components/icons/codepen.vue";
+import Linkedin from "~/components/icons/linkedin.vue";
 
 export default {
     components: {

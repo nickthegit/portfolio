@@ -39,8 +39,8 @@ import VanillaTilt from 'vanilla-tilt'
 import Swiper from 'swiper'
 import axios from 'axios'
 
-import ArrowRight from '~/components/icons/arrows/ArrowRight.vue'
-import ArrowLeft from '~/components/icons/arrows/ArrowLeft.vue'
+import ArrowRight from '~/components/icons/arrows/arrowright.vue'
+import ArrowLeft from '~/components/icons/arrows/arrowleft.vue'
 
 export default {
     components: {

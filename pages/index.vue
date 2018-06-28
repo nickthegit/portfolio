@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+  {{ dav }}
 
     <!-- Slider main container -->
     <div class="swiper-container">
@@ -57,7 +58,7 @@ import TweenMax from 'gsap'
 import Swiper from 'swiper'
 // import fullpage from 'fullpage.js'
 
-import TextBlock from "~/components/TextBlock.vue"
+import TextBlock from "~/components/textblock.vue"
 
 export default {
   components: { 
@@ -65,6 +66,7 @@ export default {
   },
   data() {
     return {
+      dav: this.$store.state.siteData,
       name: 'Nick John',
       tagline: 'UX/UI & Frontend developer<br> at Rosie Lee',
       aboutSections: {
@@ -151,6 +153,8 @@ export default {
   mounted() {
     if (process.browser) {
 
+      console.log(this.$store.state.siteData);
+      
       document.querySelector('body').classList.remove('body-light');
       
       var w = window.innerWidth;
