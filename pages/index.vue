@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-  {{ dav }}
+  <!-- <div>{{ dav }}</div> -->
 
     <!-- Slider main container -->
     <div class="swiper-container">
