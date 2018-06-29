@@ -1,36 +1,24 @@
 <template>
     <div class="work-item-page">
         <section class="hero-wrap">
+            <!-- <h1>{{ project }}</h1> -->
             <div class="hero-img full-width">
-                <!-- <img src="http://via.placeholder.com/2000x1000" alt=""> -->
-
                 <picture>
-                    <source 
-                        media="(min-width: 1024px)"
-                        srcset="http://res.cloudinary.com/jonserness/image/upload/Work/Test%20case%20study/img-test.jpg">
-                    <source 
-                        media="(min-width: 769px)"
-                        srcset="http://via.placeholder.com/1024x512,
-                                http://via.placeholder.com/2048x1024 2x">
-                    <source 
-                        media="(min-width: 481px)"
-                        srcset="http://via.placeholder.com/768x768,
-                                http://via.placeholder.com/1536x1536 2x">
-                    <source 
-                        media="(min-width: 321px)"
-                        srcset="http://via.placeholder.com/480x480,
-                                http://via.placeholder.com/960x960 2x">
-                    <source 
-                        media="(min-width: 200px)"
-                        srcset="http://via.placeholder.com/320x320,
-                                http://via.placeholder.com/640x640 2x">
-                    <img 
-                                               alt="">
+                    <source media="(min-width: 1024px)" :srcset="project.acf.feature_image.sizes.desktop_img_cropped">
+                    <source media="(min-width: 769px)" :srcset="project.acf.feature_image.sizes.tablet_img_large_x2_cropped + ' 2x'">
+                    <source media="(min-width: 769px)" :srcset="project.acf.feature_image.sizes.tablet_img_large_cropped">
+                    <source media="(min-width: 481px)" :srcset="project.acf.feature_image.sizes.tablet_img_x2_square + ' 2x'">
+                    <source media="(min-width: 481px)" :srcset="project.acf.feature_image.sizes.tablet_img_square">
+                    <source media="(min-width: 321px)" :srcset="project.acf.feature_image.sizes.mobile_img_large_x2_square + ' 2x'">
+                    <source media="(min-width: 321px)" :srcset="project.acf.feature_image.sizes.mobile_img_large_square">
+                    <source media="(min-width: 200px)" :srcset="project.acf.feature_image.sizes.mobile_img_x2_square + ' 2x'">
+                    <source media="(min-width: 200px)" :srcset="project.acf.feature_image.sizes.mobile_img_square">
+                    <img :src="project.acf.feature_image.sizes.fallback_img" :alt="project.acf.feature_image.alt">
                 </picture>
 
             </div>
             <div class="hero-text-wrap contained-narrow">
-                <h1>Title of CS</h1>
+                <h1>{{ project.acf.project_title }}</h1>
                 <h3>For: <a href="https://rosielee.co.uk/" target="_blank">Rosie Lee</a>, <a href=""><span></span> Link</a></h3>
                 <div class="tags">
                     <span>tag1</span>
@@ -58,13 +46,19 @@
 
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
+
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
         <div>
             SLUG HERE {{ $route.params }}
         </div>
         <br/><br/><br/><br/>
-        <!-- <h3>{{ project.acf }}</h3> -->
+        <h3>{{ project.acf }}</h3> 
         <br/><br/>
-        <h3>{{ project.acf.project_title }}</h3>
+        <h3></h3>
         <br/><br/>
         <h3>{{ project.acf.feature_image.url }}</h3>
         <br/><br/>
@@ -86,29 +80,25 @@ import axios from 'axios'
 
 export default {
     validate ({ params }) {
-        // return params.slug !== undefined // You can also use redirect if you don't want to display a 404 page
         return /^\d+$/.test(params.id)
     },
-    async asyncData({ params, error }) {
-        let [projectRes, categoryRes] = await Promise.all([
-            axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects/'+ params.id),
-            axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories')
-        ])
-        return {
-            project: projectRes.data,
-            allCategories: categoryRes.data
-        }
-    },
     mounted() {
-        console.log(this.project);
+        console.log(this.project.acf.feature_image.alt);
     },
     computed: {
+        project: function () {
+            for (let p = 0; p < this.$store.state.projects.length; p++) {
+                if (this.$store.state.projects[p].id == this.$route.params.id) {
+                    return this.$store.state.projects[p]
+                }
+            }    
+        },
         categories: function () {
             let cats = []          
             for (let i = 0; i < this.project.categories.length; i++) {
-                for (let c = 0; c < this.allCategories.length; c++) {
-                    if (this.allCategories[c].id == this.project.categories[i]) {
-                        cats.push(this.allCategories[c].name);
+                for (let c = 0; c < this.$store.state.categories.length; c++) {
+                    if (this.$store.state.categories[c].id == this.project.categories[i]) {
+                        cats.push(this.$store.state.categories[c].name);
                     }                   
                 }
             }
