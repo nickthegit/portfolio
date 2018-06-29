@@ -159,7 +159,7 @@ export default {
         }
     },
     asyncData ({ params }) {
-        return axios.get(`http://nj-admin.co.uk/wp-json/wp/v2/projects`)
+        return axios.get(`https://nj-admin.co.uk/wp-json/wp/v2/projects`)
         .then((res) => {
             // console.log(res.data); 
             return { 

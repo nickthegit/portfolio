@@ -91,8 +91,8 @@ export default {
     },
     async asyncData({ params, error }) {
         let [projectRes, categoryRes] = await Promise.all([
-            axios.get('http://nj-admin.co.uk/wp-json/wp/v2/projects/'+ params.id),
-            axios.get('http://nj-admin.co.uk/wp-json/wp/v2/categories')
+            axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects/'+ params.id),
+            axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories')
         ])
         return {
             project: projectRes.data,
