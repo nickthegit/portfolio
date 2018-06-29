@@ -17,10 +17,10 @@ const createStore = () => {
         },
         actions: {
             nuxtServerInit(vuexContext, context) {
-                return axios.get('http://nj-admin.co.uk/wp-json/wp/v2/categories')
+                return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories')
                 .then( res => {
                     vuexContext.commit('setCategories', res.data)
-                    return axios.get('http://nj-admin.co.uk/wp-json/wp/v2/projects')
+                    return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
                     .then( res => {
                         vuexContext.commit('setProjects', res.data)
                     })
