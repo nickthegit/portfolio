@@ -1,6 +1,6 @@
 <template>
   <div class="default-container">
-    <Navigation />
+    <navigation />
     <div class="content-container">
       <nuxt/>
     </div>
@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Navigation from "~/components/Navigation.vue"
+import navigation from "~/components/navigation.vue"
 export default {
   components: { 
-    Navigation 
+    navigation 
   }
 }
 </script>
