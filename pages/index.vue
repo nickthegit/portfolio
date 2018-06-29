@@ -153,7 +153,8 @@ export default {
   mounted() {
     if (process.browser) {
 
-      console.log(this.$store.state.siteData);
+      console.log(this.$store.state.categories);
+      console.log(this.$store.state.projects);
       
       document.querySelector('body').classList.remove('body-light');
       
