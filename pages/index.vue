@@ -1,6 +1,7 @@
 <template>
   <div class="main-container">
 
+
     <!-- <div id="trigger"></div>
     <section id="section1" class="home-landing">
       <div class="profile-image">
@@ -131,8 +132,8 @@ export default {
   mounted() {
     if (process.browser) {
 
-      console.log(this.$store.state.categories);
-      console.log(this.$store.state.projects);
+      // console.log(this.$store.state.categories);
+      // console.log(this.$store.state.projects);
       
       document.querySelector('body').classList.remove('body-light');
       
@@ -189,155 +190,156 @@ export default {
 
 <style lang="scss" scoped>
 
-  #trigger {
-    position: absolute;
-    top: 55vh;
-  }
+    @import "~/assets/sass/base/_variables.scss";
+    @import "~/assets/sass/base/_mediaquery.scss";
+    
+  // #trigger {
+  //   position: absolute;
+  //   top: 55vh;
+  // }
 
-  #section2 .textBlock, .skill, #section3 .textBlock, #section4 .textBlock {
-    visibility: hidden;
-  }
+  // #section2 .textBlock, .skill, #section3 .textBlock, #section4 .textBlock {
+  //   visibility: hidden;
+  // }
 
-  @import "~/assets/sass/base/_variables.scss";
-  @import "~/assets/sass/base/_mediaquery.scss";
 
-  @import "~/assets/sass/components/_swiper.scss";
+  // @import "~/assets/sass/components/_swiper.scss";
 
-  .main-container {
-    /* padding: 80px; */
-    // height: 1300vh;
-    width: 100%;
-    max-width: 1260px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    // background: olive;
-    overflow: scroll;
-    transition: all .3s ease-out;
-  }
+  // .main-container {
+  //   /* padding: 80px; */
+  //   // height: 1300vh;
+  //   width: 100%;
+  //   max-width: 1260px;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   // background: olive;
+  //   overflow: scroll;
+  //   transition: all .3s ease-out;
+  // }
 
-  .swiper-container {
-    width: 100%;
-    height: 100vh;
-    .swiper-slide {
-      &:nth-child(odd) {
-        background: green;
-      }
-    }
-  }
+  // .swiper-container {
+  //   width: 100%;
+  //   height: 100vh;
+  //   .swiper-slide {
+  //     &:nth-child(odd) {
+  //       background: green;
+  //     }
+  //   }
+  // }
 
-  .home-landing {
-      position: fixed;
-      top: 0;
-      left: 0;
-    .profile-image {
-      width: 55%;
-      position: absolute;
-      height: 100%;
-      right: 0;
-      bottom: 0;
-      opacity: 0.7;
-      img {
-        height: 100%;
-        width: auto;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-      }
-    }
-    .hero-title {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, 60%);
-      h1 {
-        font-size: 6vh;
-        margin: 0;
-        padding: 0;
-      }
-      h2 {
-        font-family: 'Bludhaven';
-        color: $grey;
-        font-weight: 400;
-        font-size: 2.8vh;
-        line-height: 3.6vh;
-      }
-    }
+  // .home-landing {
+  //     position: fixed;
+  //     top: 0;
+  //     left: 0;
+  //   .profile-image {
+  //     width: 55%;
+  //     position: absolute;
+  //     height: 100%;
+  //     right: 0;
+  //     bottom: 0;
+  //     opacity: 0.7;
+  //     img {
+  //       height: 100%;
+  //       width: auto;
+  //       position: absolute;
+  //       left: 0;
+  //       bottom: 0;
+  //     }
+  //   }
+  //   .hero-title {
+  //     position: absolute;
+  //     left: 50%;
+  //     top: 50%;
+  //     transform: translate(-50%, 60%);
+  //     h1 {
+  //       font-size: 6vh;
+  //       margin: 0;
+  //       padding: 0;
+  //     }
+  //     h2 {
+  //       font-family: 'Bludhaven';
+  //       color: $grey;
+  //       font-weight: 400;
+  //       font-size: 2.8vh;
+  //       line-height: 3.6vh;
+  //     }
+  //   }
 
-  }
-  #section2 {
-    .textBlock {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);    
-    }
-  }
-  #section3 {
-    .skills-wrap {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      right: 0;
-      padding: ($headerheight * 2) 5%;
-      box-sizing: border-box;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      align-items: flex-start;
-      align-content: center;
-    } 
-    .skill {
-      width: 20%;
-      height: auto;
-      margin: 5%;
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-    .textBlock {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);    
-    }   
-  }
-  #section4 {
-      display: flex;
-      align-items: center; 
-  }
+  // }
+  // #section2 {
+  //   .textBlock {
+  //     position: absolute;
+  //     top: 50%;
+  //     transform: translateY(-50%);    
+  //   }
+  // }
+  // #section3 {
+  //   .skills-wrap {
+  //     position: absolute;
+  //     width: 50%;
+  //     height: 100%;
+  //     top: 0;
+  //     right: 0;
+  //     padding: ($headerheight * 2) 5%;
+  //     box-sizing: border-box;
+  //     display: flex;
+  //     flex-wrap: wrap;
+  //     justify-content: space-evenly;
+  //     align-items: flex-start;
+  //     align-content: center;
+  //   } 
+  //   .skill {
+  //     width: 20%;
+  //     height: auto;
+  //     margin: 5%;
+  //     img {
+  //       width: 100%;
+  //       height: auto;
+  //     }
+  //   }
+  //   .textBlock {
+  //     position: absolute;
+  //     top: 50%;
+  //     transform: translateY(-50%);    
+  //   }   
+  // }
+  // #section4 {
+  //     display: flex;
+  //     align-items: center; 
+  // }
 
-  @include breakpoint(tablet-mobile) {
-    .home-landing {
-      .profile-image {
-        width: 80%;
-        img {
-          height: 95%;
-        }
-      }
-    }
-    #section3 {
-      .skills-wrap {
-        position: absolute;
-        width: 100%;
-        height: 50%;
-        top: 0;
-        padding-top: ($headerheight * 3);
-      } 
-      .skill {
-        width: 13%;
-        margin: 2% 4%;
-      }
-      .textBlock {
-        position: absolute;
-        top: initial;
-        transform: translateY(0);
-        bottom: 0;   
-        height: 50%; 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }   
-    }
-  }
+  // @include breakpoint(tablet-mobile) {
+  //   .home-landing {
+  //     .profile-image {
+  //       width: 80%;
+  //       img {
+  //         height: 95%;
+  //       }
+  //     }
+  //   }
+  //   #section3 {
+  //     .skills-wrap {
+  //       position: absolute;
+  //       width: 100%;
+  //       height: 50%;
+  //       top: 0;
+  //       padding-top: ($headerheight * 3);
+  //     } 
+  //     .skill {
+  //       width: 13%;
+  //       margin: 2% 4%;
+  //     }
+  //     .textBlock {
+  //       position: absolute;
+  //       top: initial;
+  //       transform: translateY(0);
+  //       bottom: 0;   
+  //       height: 50%; 
+  //       display: flex;
+  //       flex-direction: column;
+  //       justify-content: center;
+  //     }   
+  //   }
+  // }
 </style>

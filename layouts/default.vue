@@ -22,7 +22,7 @@ export default {
       width: 100%;
       min-height: 100vh;
       position: relative;
-      overflow-x: hidden;
+      // overflow-x: hidden;
     }
     .content-container {
       transition: all .5s ease-out;
