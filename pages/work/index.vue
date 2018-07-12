@@ -9,7 +9,7 @@
             <div class="swiper-wrapper">
                 <!-- Slides -->
                 <!-- <div class="swiper-slide portfolio-slide"  v-for="project in projectsTwo" :key="project.index" :data-theme="project.lightTheme" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  > -->
-                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" @click="toCaseStudy(project.id, project.slug)" :data-theme="project.acf.lightdark_toggle" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }"  >
+                <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }"  >
                     <h1>{{ project.acf.project_title }}</h1>
                     <div class="fullscreen-bg" v-if="project.video">
                         <!-- <video autoplay loop muted>
@@ -63,15 +63,15 @@ export default {
                 //     invert: false,
                 // },
                 // loop: true,
-                on: {
-                    init: function () {
-                        if (myArr[0].dataset.theme == 'true') {
-                            document.body.classList.add("body-light");
-                        } else {
-                            document.body.classList.remove("body-light");
-                        }
-                    },
-                },
+                // on: {
+                //     init: function () {
+                //         if (myArr[0].dataset.theme == 'true') {
+                //             document.body.classList.add("body-light");
+                //         } else {
+                //             document.body.classList.remove("body-light");
+                //         }
+                //     },
+                // },
                 // If we need pagination
                 pagination: {
                     el: '.pagination',
@@ -95,13 +95,13 @@ export default {
             // });
 
 
-            mySwiper.on('slideChange', function () {
-                if (myArr[mySwiper.activeIndex].dataset.theme == 'true') {
-                    document.body.classList.add("body-light");
-                } else {
-                    document.body.classList.remove("body-light");
-                }
-            });
+            // mySwiper.on('slideChange', function () {
+            //     if (myArr[mySwiper.activeIndex].dataset.theme == 'true') {
+            //         document.body.classList.add("body-light");
+            //     } else {
+            //         document.body.classList.remove("body-light");
+            //     }
+            // });
 
 
             // let slideTilt = document.querySelector(".swiper-wrapper");

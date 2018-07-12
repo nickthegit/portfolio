@@ -8,13 +8,17 @@
 // }
 
 body {
-    background: $black;
+    background-color: $black;
     color: $white;
     transition: background 0.5s ease-out;
-    &.body-light {
-        background: $white;
-        color: $black;        
-    }
+    // background-image: url('/assets/img/nj-background.jpg');
+    // background-size: 100%;
+    // background-position: fixed;
+    // background-repeat: no-repeat;
+    // &.body-light {
+    //     background: $white;
+    //     color: $black;        
+    // }
 }
 
 a { 
@@ -26,4 +30,21 @@ div, textarea, select, input, button { outline: none; }
 
 .select-none {
     user-select: none;
+}
+
+.full_width, .contained, .contained_narrow {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    img, video {
+        width: 100%;
+    }
+}
+.contained {
+    max-width: 1200px;
+}
+.contained_narrow {
+    max-width: 800px;
 }

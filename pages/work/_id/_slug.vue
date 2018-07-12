@@ -102,22 +102,8 @@ export default {
 
     @import "~/assets/sass/base/_variables.scss";
     @import "~/assets/sass/base/_mediaquery.scss";
-
-    .full_width, .contained, .contained_narrow {
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        width: 100%;
+    .work-item-page {
         text-align: center;
-        img, video {
-            width: 100%;
-        }
-    }
-    .contained {
-        max-width: 1200px;
-    }
-    .contained_narrow {
-        max-width: 800px;
     }
     .hero-wrap {
         .hero-img {
@@ -221,6 +207,7 @@ export default {
         }
         .prev {
             border-right: solid 1px $grey;
+            text-align: left;
             left: 0;
         }
     }

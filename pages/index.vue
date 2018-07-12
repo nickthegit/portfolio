@@ -1,47 +1,36 @@
 <template>
   <div class="main-container">
-
-
-    <!-- <div id="trigger"></div>
-    <section id="section1" class="home-landing">
-      <div class="profile-image">
-        <img src="~/assets/img/nj-profile.png">
-      </div>
-      <div class="hero-title">
-          <h1>{{ name }}</h1>
-          <h2 v-html="tagline"></h2>
-      </div>
-    </section>
-    <section id="section2" class="contain">
-      <TextBlock :title="aboutSections.section1.title" :h2Content="aboutSections.section1.content" :classOf="aboutSections.section1.class" />
-    </section>
-    <section id="section3" class="contain">
-      <TextBlock :title="aboutSections.section2.title" :h2Content="aboutSections.section2.content" :classOf="aboutSections.section2.class" />
-      <div class="skills-wrap">
-        <div class="skill" v-for="skill in aboutSections.skills" :key="skill.index">
-          <img :src="skill.imgUrl" alt="">
-         
+    <main>
+      <section class="contained">
+        <h1>Hello.</h1>
+        <h2>I'm Nick, I live in the UK and I code frontend experiences at Rosie Lee. </h2>
+        <div class="social_home">
+          <a href="https://github.com/nickthegit" target="_blank"><github/></a>
+          <a href="https://codepen.io/jonserness/" target="_blank"><codepen/></a>
+          <a href="https://www.linkedin.com/in/nick-john-a310a753/" target="_blank"><linkedin/></a>
         </div>
-      </div>
-    </section>
-    <section id="section4" class="contain">
-      <TextBlock :title="contact.title" :h2Content="contact.email"/>
-    </section> -->
-
+        <nuxt-link class="my_work" to="/work">View my work <span><arrowright/></span></nuxt-link>
+      </section>
+    </main>
   </div>
 </template>
 
 <script>
 
 import TweenMax from 'gsap'
-import Swiper from 'swiper'
-// import fullpage from 'fullpage.js'
 
-import textblock from "~/components/textblock.vue"
+// import textblock from "~/components/textblock.vue"
+import github from "~/components/icons/github.vue"
+import codepen from "~/components/icons/codepen.vue"
+import linkedin from "~/components/icons/linkedin.vue"
+import arrowright from '~/components/icons/arrows/arrowright.vue'
 
 export default {
   components: { 
-    textblock
+        github,
+        codepen,
+        linkedin,
+        arrowright
   },
   data() {
     return {
@@ -139,41 +128,6 @@ export default {
       
       var w = window.innerWidth;
       var h = window.innerHeight;
-
-      // console.log($('#fullpage'));
-
-      var mySwiper = new Swiper ('.swiper-container', {
-        // Optional parameters
-        direction: 'vertical',
-        loop: false,
-        speed: 600,
-        // grabCursor: true,
-        preventInteractionOnTransition: true,
-        mousewheel: {
-          invert: true,
-          forceToAxis: true,
-          sensitivity: 0.5
-        },
-
-        // If we need pagination
-        pagination: {
-          el: '.swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-
-        // And if we need scrollbar
-        scrollbar: {
-          el: '.swiper-scrollbar',
-        },
-      })
-
-     
-
     }
   },
   head() {
@@ -192,154 +146,66 @@ export default {
 
     @import "~/assets/sass/base/_variables.scss";
     @import "~/assets/sass/base/_mediaquery.scss";
-    
-  // #trigger {
-  //   position: absolute;
-  //   top: 55vh;
-  // }
 
-  // #section2 .textBlock, .skill, #section3 .textBlock, #section4 .textBlock {
-  //   visibility: hidden;
-  // }
+    main {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      align-items: center;
+    }
+    section {
+      padding: 40px;
+      h1 {
+        font-size: 12vh;
+      }
+      h2 {
+        font-family: "Bludhaven", Times, serif;
+        font-weight: 400;
+        font-size: 3.5vh;
+        max-width: 720px;
+      }
+    }
+    .social_home {
+      background: green;
+      display: inline-block;
+      a {
+          width: 22px;
+          height: 22px;
+          display: inline-block;
+          // background: fuchsia;
+          margin: 5px 10px 0 0 ;
+          padding: 5px 5px 5px 0;
+          svg {
+              height: 100%;
+              stroke: $grey;
+          }
+          &:hover {
+              svg {
+                  stroke: $darkgrey;
+              }                    
+          }
+      }
+    }
+    .my_work {
+      background: violet;
+      display: flex;
+      // flex-wrap: wrap;
+      align-content: flex-start;
+      max-width: 500px;
+      span {
+        display: inline-block;
+        width: auto;
+        height: 15px;
+        svg {
+          width: auto;
+          height: 100%;
+          fill: $grey;
+        }
+      }
+    }
 
-
-  // @import "~/assets/sass/components/_swiper.scss";
-
-  // .main-container {
-  //   /* padding: 80px; */
-  //   // height: 1300vh;
-  //   width: 100%;
-  //   max-width: 1260px;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   // background: olive;
-  //   overflow: scroll;
-  //   transition: all .3s ease-out;
-  // }
-
-  // .swiper-container {
-  //   width: 100%;
-  //   height: 100vh;
-  //   .swiper-slide {
-  //     &:nth-child(odd) {
-  //       background: green;
-  //     }
-  //   }
-  // }
-
-  // .home-landing {
-  //     position: fixed;
-  //     top: 0;
-  //     left: 0;
-  //   .profile-image {
-  //     width: 55%;
-  //     position: absolute;
-  //     height: 100%;
-  //     right: 0;
-  //     bottom: 0;
-  //     opacity: 0.7;
-  //     img {
-  //       height: 100%;
-  //       width: auto;
-  //       position: absolute;
-  //       left: 0;
-  //       bottom: 0;
-  //     }
-  //   }
-  //   .hero-title {
-  //     position: absolute;
-  //     left: 50%;
-  //     top: 50%;
-  //     transform: translate(-50%, 60%);
-  //     h1 {
-  //       font-size: 6vh;
-  //       margin: 0;
-  //       padding: 0;
-  //     }
-  //     h2 {
-  //       font-family: 'Bludhaven';
-  //       color: $grey;
-  //       font-weight: 400;
-  //       font-size: 2.8vh;
-  //       line-height: 3.6vh;
-  //     }
-  //   }
-
-  // }
-  // #section2 {
-  //   .textBlock {
-  //     position: absolute;
-  //     top: 50%;
-  //     transform: translateY(-50%);    
-  //   }
-  // }
-  // #section3 {
-  //   .skills-wrap {
-  //     position: absolute;
-  //     width: 50%;
-  //     height: 100%;
-  //     top: 0;
-  //     right: 0;
-  //     padding: ($headerheight * 2) 5%;
-  //     box-sizing: border-box;
-  //     display: flex;
-  //     flex-wrap: wrap;
-  //     justify-content: space-evenly;
-  //     align-items: flex-start;
-  //     align-content: center;
-  //   } 
-  //   .skill {
-  //     width: 20%;
-  //     height: auto;
-  //     margin: 5%;
-  //     img {
-  //       width: 100%;
-  //       height: auto;
-  //     }
-  //   }
-  //   .textBlock {
-  //     position: absolute;
-  //     top: 50%;
-  //     transform: translateY(-50%);    
-  //   }   
-  // }
-  // #section4 {
-  //     display: flex;
-  //     align-items: center; 
-  // }
-
-  // @include breakpoint(tablet-mobile) {
-  //   .home-landing {
-  //     .profile-image {
-  //       width: 80%;
-  //       img {
-  //         height: 95%;
-  //       }
-  //     }
-  //   }
-  //   #section3 {
-  //     .skills-wrap {
-  //       position: absolute;
-  //       width: 100%;
-  //       height: 50%;
-  //       top: 0;
-  //       padding-top: ($headerheight * 3);
-  //     } 
-  //     .skill {
-  //       width: 13%;
-  //       margin: 2% 4%;
-  //     }
-  //     .textBlock {
-  //       position: absolute;
-  //       top: initial;
-  //       transform: translateY(0);
-  //       bottom: 0;   
-  //       height: 50%; 
-  //       display: flex;
-  //       flex-direction: column;
-  //       justify-content: center;
-  //     }   
-  //   }
-  // }
+ 
 </style>
