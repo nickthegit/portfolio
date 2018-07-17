@@ -34,7 +34,8 @@ module.exports = {
     ],
   build: {
     vendor: [
-      'gsap'
+      'gsap',
+      'fullpage.js'
     ],
     /*
     ** Run ESLint on save

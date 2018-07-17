@@ -15,9 +15,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^0.28.11",
+    "fullpage.js": "^3.0.1",
     "gsap": "^2.0.1",
-    "node-sass": "^4.9.0",
-    "npm": "^6.1.0",
+    "node-sass": "^4.9.2",
+    "npm": "^6.2.0",
     "nuxt": "^1.4.1",
     "sass-loader": "^7.0.3",
     "swiper": "^4.3.3",

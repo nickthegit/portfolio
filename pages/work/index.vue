@@ -1,6 +1,9 @@
 <template>
 
-    <div class="work-wrap">
+    <div class="work-wrap" id="work">
+	        <div v-for="project in projects" :key="project.index" class="section" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }">
+                <h1>{{ project.acf.project_title }}</h1>
+            </div>
 
         <!-- {{ projectsTwo }}
 
@@ -36,122 +39,34 @@ export default {
     mounted() {
         if (process.browser) {
             
-            const windowWidth = window.innerWidth;
-            let portfolioSlides = document.getElementsByClassName('portfolio-slide')
-            var myArr = Array.from(portfolioSlides);
+            // const windowWidth = window.innerWidth;
 
-            var mySwiper = new Swiper ('.swiper-container', {
-                // Optional parameters
-                // direction: 'vertical',
-                effect: 'fade',
-                spaceBetween: 40,
-                // mousewheel: {
-                //     invert: false,
-                // },
-                // loop: true,
-                // on: {
-                //     init: function () {
-                //         if (myArr[0].dataset.theme == 'true') {
-                //             document.body.classList.add("body-light");
-                //         } else {
-                //             document.body.classList.remove("body-light");
-                //         }
-                //     },
-                // },
-                // If we need pagination
-                pagination: {
-                    el: '.pagination',
-                    type: 'fraction',
-                },
+            console.log(this.$store.state.projects);
+            
 
-                // Navigation arrows
-                navigation: {
-                    nextEl: '.button-next',
-                    prevEl: '.button-prev',
-                },
+            var fullpage = require('fullpage.js')
 
-                // And if we need scrollbar
-                scrollbar: {
-                el: '.swiper-scrollbar',
-                },
-            })
-
-            // mySwiper.on('slideChange', function () {
-            //     console.log(this);
-            // });
-
-
-            // mySwiper.on('slideChange', function () {
-            //     if (myArr[mySwiper.activeIndex].dataset.theme == 'true') {
-            //         document.body.classList.add("body-light");
-            //     } else {
-            //         document.body.classList.remove("body-light");
-            //     }
-            // });
-
-
-            // let slideTilt = document.querySelector(".swiper-wrapper");
-            // VanillaTilt.init(slideTilt, {max: 25, speed: 200});
-
-            // mySwiper.on('slideChangeTransitionStart', function () {
-            //     // console.log('start');
-            //     // slideTilt.vanillaTilt.destroy();
-            // });
-
-            // mySwiper.on('slideChangeTransitionEnd', function () {
-            //     // console.log('end');
-            //     // VanillaTilt.init(slideTilt, {max: 25, speed: 200});
-            // });
-
+            new fullpage('#work', {
+                //options here
+                autoScrolling:true,
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+                // scrollHorizontally: true
+            });
         }
     },  
-    data() {
-        return { 
-            // projectsTwo: [],
-            // projects: [
-            //     {   
-            //         id: 25,
-            //         slug: 'project1',
-            //         title: 'Title here',
-            //         featureImg: 'http://via.placeholder.com/1920x1080/fbaf5d',
-            //         video: '',
-            //         lightTheme: true
-            //     },
-            //     {   
-            //         id: 20,
-            //         slug: 'project2',
-            //         title: 'Title here2',
-            //         featureImg: 'http://via.placeholder.com/1920x1080/f49ac1',
-            //         video: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4',
-            //         lightTheme: true
-            //     },
-            //     {   
-            //         id: 250,
-            //         slug: 'project3',
-            //         title: 'Title here3',
-            //         featureImg: 'http://via.placeholder.com/1920x1080/c4df9b',
-            //         video: '',
-            //         lightTheme: false
-            //     },
-            //     {   
-            //         id: 12,
-            //         slug: 'project4',
-            //         title: 'Title here4',
-            //         featureImg: 'http://via.placeholder.com/1920x1080/d7d7d7',
-            //         video: '',
-            //         lightTheme: true
-            //     }
-            // ]
+    // asyncData ({ params }) {
+    //     return axios.get(`https://nj-admin.co.uk/wp-json/wp/v2/projects`)
+    //     .then((res) => {
+    //         // console.log(res.data); 
+    //         return { 
+    //             projects: res.data 
+    //         }
+    //     })
+    // },
+    computed: {
+        projects: function() {
+            return this.$store.state.projects
         }
-    },
-    asyncData ({ params }) {
-        return axios.get(`https://nj-admin.co.uk/wp-json/wp/v2/projects`)
-        .then((res) => {
-            // console.log(res.data); 
-            return { 
-                projects: res.data 
-            }
-        })
     },
     methods: {
         toCaseStudy(id, slug) {
