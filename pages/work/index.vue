@@ -2,40 +2,26 @@
 
     <div class="work-wrap">
 
-        <!-- {{ projectsTwo }} -->
+        <!-- {{ projectsTwo }}
 
         <div class="swiper-container">
-            <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-                <!-- Slides -->
-                <!-- <div class="swiper-slide portfolio-slide"  v-for="project in projectsTwo" :key="project.index" :data-theme="project.lightTheme" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.featureImg + ')' }"  > -->
                 <div class="swiper-slide portfolio-slide"  v-for="project in projects" :key="project.index" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }"  >
                     <h1>{{ project.acf.project_title }}</h1>
-                    <div class="fullscreen-bg" v-if="project.video">
-                        <!-- <video autoplay loop muted>
-                            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
-                            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.ogg" type="video/ogg">
-                        </video> -->
-                    </div>
                 </div>
             </div>
-
-            <!-- If we need scrollbar -->
-            <!-- <div class="swiper-scrollbar"></div> -->
         </div>
-
         <div class="swiper-pagination-nav-wrap">
             <div class="button-prev select-none"><arrowleft/></div>
             <div class="pagination select-none"></div>
             <div class="button-next select-none"><arrowright/></div>
-        </div>
+        </div> -->
 
     </div>
 
 </template>
 
 <script>
-import VanillaTilt from 'vanilla-tilt'
 import Swiper from 'swiper'
 import axios from 'axios'
 

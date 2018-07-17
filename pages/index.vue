@@ -4,11 +4,6 @@
       <section class="contained">
         <h1>Hello.</h1>
         <h2>I'm Nick, I live in the UK and I code frontend experiences at Rosie Lee. </h2>
-        <div class="social_home">
-          <a href="https://github.com/nickthegit" target="_blank"><github/></a>
-          <a href="https://codepen.io/jonserness/" target="_blank"><codepen/></a>
-          <a href="https://www.linkedin.com/in/nick-john-a310a753/" target="_blank"><linkedin/></a>
-        </div>
         <nuxt-link class="my_work" to="/work">View my work <span><arrowright/></span></nuxt-link>
       </section>
     </main>
@@ -19,7 +14,6 @@
 
 import TweenMax from 'gsap'
 
-// import textblock from "~/components/textblock.vue"
 import github from "~/components/icons/github.vue"
 import codepen from "~/components/icons/codepen.vue"
 import linkedin from "~/components/icons/linkedin.vue"
@@ -36,86 +30,7 @@ export default {
     return {
       dav: this.$store.state.siteData,
       name: 'Nick John',
-      tagline: 'UX/UI & Frontend developer<br> at Rosie Lee',
-      aboutSections: {
-        section1: {
-          title: 'Intro',
-          content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>Content goes here',
-          class: 'statement1'
-        },
-        section2: {
-          title: 'Experience',
-          content: 'Lorem2 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>Content goes here',
-          class: 'statement2'
-        },
-        skills: [
-          {
-            name: 'name1',
-            slug: 'slug1',
-            imgUrl: 'http://via.placeholder.com/350x350/fbaf5d'
-          },
-          {
-            name: 'name2',
-            slug: 'slug2',
-            imgUrl: 'http://via.placeholder.com/350x350/b4dc9b'
-          },
-          {
-            name: 'name3',
-            slug: 'slug3',
-            imgUrl: 'http://via.placeholder.com/350x350/f49ac1'
-          },
-          {
-            name: 'name4',
-            slug: 'slug4',
-            imgUrl: 'http://via.placeholder.com/350x350/d7d7d7'
-          },
-          {
-            name: 'name1',
-            slug: 'slug1',
-            imgUrl: 'http://via.placeholder.com/350x350/c4df9b'
-          },
-          {
-            name: 'name2',
-            slug: 'slug2',
-            imgUrl: 'http://via.placeholder.com/350x350/0076a3'
-          },
-          {
-            name: 'name3',
-            slug: 'slug3',
-            imgUrl: 'http://via.placeholder.com/350x350/ed1c24'
-          },
-          {
-            name: 'name4',
-            slug: 'slug4',
-            imgUrl: 'http://via.placeholder.com/350x350/ec008c'
-          },
-          {
-            name: 'name1',
-            slug: 'slug1',
-            imgUrl: 'http://via.placeholder.com/350x350/fbaf5d'
-          },
-          {
-            name: 'name2',
-            slug: 'slug2',
-            imgUrl: 'http://via.placeholder.com/350x350/b4dc9b'
-          },
-          {
-            name: 'name3',
-            slug: 'slug3',
-            imgUrl: 'http://via.placeholder.com/350x350/f49ac1'
-          },
-          {
-            name: 'name4',
-            slug: 'slug4',
-            imgUrl: 'http://via.placeholder.com/350x350/d7d7d7'
-          }
-        ]
-
-      },
-      contact: {
-        title: 'Say hello',
-        email: '<a href="mailto:hello@nickjohn.co.uk?subject=Hello">hello@nickjohn.co.uk</a>'
-      }
+      intro: "I'm Nick, I live in the UK and I code frontend<br> experiences at Rosie Lee."
     }
   },
   mounted() {
@@ -137,7 +52,6 @@ export default {
       }
     }
   }
- 
 }
 
 </script>
@@ -167,38 +81,46 @@ export default {
         font-size: 3.5vh;
         max-width: 720px;
       }
+      @include breakpoint(tablet-mobile) { 
+        h2 {
+          font-size: 2.8vh;
+        }
+      }
     }
     .social_home {
-      background: green;
       display: inline-block;
       a {
-          width: 22px;
-          height: 22px;
-          display: inline-block;
-          // background: fuchsia;
-          margin: 5px 10px 0 0 ;
-          padding: 5px 5px 5px 0;
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        margin: 5px 10px 0 0 ;
+        padding: 5px 5px 5px 0;
+        svg {
+          height: 100%;
+          stroke: $grey;
+        }
+        &:hover {
           svg {
-              height: 100%;
-              stroke: $grey;
-          }
-          &:hover {
-              svg {
-                  stroke: $darkgrey;
-              }                    
-          }
+              stroke: $darkgrey;
+          }                    
+        }
       }
     }
     .my_work {
-      background: violet;
       display: flex;
-      // flex-wrap: wrap;
-      align-content: flex-start;
+      align-items: center;
       max-width: 500px;
+      margin-top: 20px;
+      font-size: 2.4vh;
+      color: $grey;
+      font-family: "NexaLight", Arial, Helvetica, sans-serif;
+      text-decoration: underline;
       span {
+        text-decoration: underline;
         display: inline-block;
         width: auto;
         height: 15px;
+        padding-left: 15px;
         svg {
           width: auto;
           height: 100%;
