@@ -1,5 +1,7 @@
 // const webpack = require('webpack')
 
+const axios = require('axios')
+
 module.exports = {
   /*
   ** Headers of the page
@@ -18,6 +20,18 @@ module.exports = {
   css: [
     '@/assets/sass/style.scss'
   ],
+  generate: {
+    routes: function (callback) {
+      axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
+      .then((res) => {
+        var routes = res.data.map((project) => {
+          return '/work/' + project.id + '/' + project.slug
+        })
+        callback(null, routes)
+      })
+      .catch(callback)
+    }
+  },
   /*
   ** Customize the progress bar color
   */

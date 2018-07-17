@@ -58,13 +58,11 @@ export default {
         responsiveimage
     },
     mounted() {
-        // if (fullpage) {
-        //     // fullpage_api.destroy('all')
-        //     console.log('dave');
-            
-        // }
-        // console.log(this.project.acf.feature_image.alt);
-        // console.log(this.projectNext);
+        if (process.browser) {
+            if (this.$store.state.workState == true ) {
+                fullpage_api.destroy()
+            }
+        }
     },
     computed: {
         project: function () {

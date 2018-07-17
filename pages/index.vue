@@ -36,9 +36,9 @@ export default {
   mounted() {
     if (process.browser) {
 
-      // if (fullpage_api) {
-      //   fullpage_api.destroy('all')
-      // }
+        if (this.$store.state.workState == true ) {
+            fullpage_api.destroy('all')
+        } 
 
       // console.log(this.$store.state.categories);
       // console.log(this.$store.state.projects);

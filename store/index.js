@@ -6,6 +6,7 @@ const createStore = () => {
         state: {
             categories: [],
             projects: [],
+            workState: false
         },
         mutations: {
             setCategories(state, data) {
@@ -13,8 +14,11 @@ const createStore = () => {
             },
             setProjects(state, data) {
                 state.projects = data;
+            },
+            toggleFullPage(state, value) {
+                state.workState = value
             }            
-        },
+        },  
         actions: {
             nuxtServerInit(vuexContext, context) {
                 return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories')
@@ -27,7 +31,7 @@ const createStore = () => {
                     .catch(e => context.error(e));
                 })
                 .then(res => {
-                    console.log('dave');
+                    // console.log('dave');
                     
                 })
                 .catch(e => context.error(e))
@@ -38,16 +42,3 @@ const createStore = () => {
 }
 
 export default createStore
-
-// export default {
-//     async asyncData({ query, error }) {
-//       let [pageRes, countRes] = await Promise.all([
-//         axios.get('/api/post/page/0'),
-//         axios.get('/api/post/count/published'),
-//       ])
-//       return {
-//          posts: pageRes.data.list,
-//          total: countRes.data.result
-//       }
-//     }
-//   }
