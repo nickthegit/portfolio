@@ -6,6 +6,7 @@ const createStore = () => {
         state: {
             categories: [],
             projects: [],
+            pages: [],
             workState: false
         },
         mutations: {
@@ -14,6 +15,9 @@ const createStore = () => {
             },
             setProjects(state, data) {
                 state.projects = data;
+            },
+            setPages(state, data) {
+                state.pages = data;
             },
             toggleFullPage(state, value) {
                 state.workState = value
@@ -27,6 +31,11 @@ const createStore = () => {
                     return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
                     .then( res => {
                         vuexContext.commit('setProjects', res.data)
+                        return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/pages')
+                        .then( res => {
+                            vuexContext.commit('setPages', res.data)
+                        })
+                        .catch(e => context.error(e));
                     })
                     .catch(e => context.error(e));
                 })

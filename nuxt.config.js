@@ -11,7 +11,27 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Portfolio for Frontend Developer Nick John' }
+      { hid: 'description', name: 'description', content: 'Portfolio for Frontend Developer Nick John' },
+      {
+        hid: `og:title`,
+        property: 'og:title',
+        content: `Nick John Portfolio`
+      },
+      {
+        hid: `og:url`,
+        property: 'og:url',
+        content: 'https://nickjohn.co.uk'
+      },
+      {
+        hid: `og:image`,
+        property: 'og:image',
+        content: `https://nickjohn.co.uk/nj-site.jpg`
+      },
+      {
+        hid: `og:description`,
+        property: 'og:description',
+        content: 'Working portfolio for Frontend Developer Nick John'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -48,7 +68,7 @@ module.exports = {
     ],
   build: {
     vendor: [
-      'gsap',
+      'gsap/TweenMax',
       'fullpage.js'
     ],
     /*

@@ -2,8 +2,8 @@
   <div class="main-container">
     <main>
       <section class="contained">
-        <h1>Hello.</h1>
-        <h2>I'm Nick, I live in the UK and I code frontend experiences at Rosie Lee. </h2>
+        <h1>{{ pageData.acf.jumbotron }}</h1>
+        <h2>{{ pageData.acf.intro_text }}</h2>
         <nuxt-link class="my_work" to="/work">View my work <span><arrowright/></span></nuxt-link>
       </section>
     </main>
@@ -21,21 +21,19 @@ import arrowright from '~/components/icons/arrows/arrowright.vue'
 
 export default {
   components: { 
-        github,
-        codepen,
-        linkedin,
-        arrowright
+    github,
+    codepen,
+    linkedin,
+    arrowright
   },
-  data() {
-    return {
-      dav: this.$store.state.siteData,
-      name: 'Nick John',
-      intro: "I'm Nick, I live in the UK and I code frontend<br> experiences at Rosie Lee."
+  computed: {
+    pageData: function() {
+      return this.$store.state.pages[0]
     }
   },
   mounted() {
     if (process.browser) {
-
+    
         if (this.$store.state.workState == true ) {
             fullpage_api.destroy('all')
         } 
@@ -53,7 +51,11 @@ export default {
     return {
       htmlAttrs: {
           class: 'home-page'
-      }
+      },
+      meta: [
+        { hid: 'description', name: 'description', content: this.pageData.acf.meta_description },
+        { hid: 'keywords', name: 'keywords', content: this.pageData.acf.meta_keywords }
+      ]
     }
   }
 }
@@ -87,7 +89,7 @@ export default {
       }
       @include breakpoint(tablet-mobile) { 
         h2 {
-          font-size: 2.8vh;
+          font-size: 3vh;
         }
       }
     }
@@ -115,7 +117,7 @@ export default {
       align-items: center;
       max-width: 500px;
       margin-top: 20px;
-      font-size: 2.4vh;
+      font-size: 2.6vh;
       color: $grey;
       font-family: "NexaLight", Arial, Helvetica, sans-serif;
       text-decoration: underline;
@@ -130,6 +132,18 @@ export default {
           height: 100%;
           fill: $grey;
         }
+      }
+      @include breakpoint(tablet) { 
+        span {
+          height: 22px;
+        }
+        font-size: 2.9vh;
+      }
+      @include breakpoint(mobile) { 
+        span {
+          height: 16px;
+        }
+        font-size: 3vh;
       }
     }
 

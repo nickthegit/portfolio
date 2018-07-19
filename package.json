@@ -21,17 +21,13 @@
     "npm": "^6.2.0",
     "nuxt": "^1.4.1",
     "sass-loader": "^7.0.3",
-    "swiper": "^4.3.3",
-    "vanilla-tilt": "^1.4.1",
-    "vue-style-loader": "^4.1.0",
-    "waypoints": "^4.0.1"
+    "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0",
-    "vue-waypoint": "^3.2.2"
+    "eslint-plugin-vue": "^4.0.0"
   }
 }
