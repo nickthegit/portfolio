@@ -28,14 +28,14 @@
         </main>
 
         <section class="next-prev-container">
-            <a v-if="project.prev" :href="'/work/' + project.prev.id + '/' + project.prev.slug" class="prev">
+            <nuxt-link v-if="project.prev" :to="'/work/' + project.prev.id + '/' + project.prev.slug" class="prev">
                 <section><div class="arrow"><arrowleft/></div><h2>Previous project</h2></section>
-            </a>
+            </nuxt-link>
             <h2 v-else class="prev"></h2>
 
-            <a v-if="project.next" :href="'/work/' + project.next.id + '/' + project.next.slug" class="next">
+            <nuxt-link v-if="project.next" :to="'/work/' + project.next.id + '/' + project.next.slug" class="next">
                 <section><div class="arrow"><arrowright/></div><h2>Next project</h2></section>
-            </a>
+            </nuxt-link>
             <h2 v-else class="next"></h2>
         </section>
 
@@ -62,23 +62,24 @@ export default {
         duration: 750,
         css: false,
         beforeEnter(el) {
-            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1})
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1, width: '100%'})
+            // console.log('dave')
         },
         enter(el, done) {
             TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
         },
         afterEnter(el) {
-            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0})
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0, width: '0%'})
         },
         enterCancelled(el) {},
         beforeLeave(el) {
-            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1})
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1, width: '100%'})
         },
         leave(el, done) {
             TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
         },
         afterLeave(el){
-            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0})
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0, width: '0%'})
         },
         leaveCancelled(el) {}
     },
