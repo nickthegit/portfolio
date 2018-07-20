@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <main>
-      <section class="contained">
+      <section class="contained" id="home_wrap">
         <h1>{{ pageData.acf.jumbotron }}</h1>
         <h2>{{ pageData.acf.intro_text }}</h2>
         <nuxt-link class="my_work" to="/work">View my work <span><arrowright/></span></nuxt-link>
@@ -26,6 +26,35 @@ export default {
     linkedin,
     arrowright
   },
+  transition: {
+    duration: 5000,
+    css: false,
+    beforeEnter(el) {
+      TweenMax.set('#home_wrap h1, #home_wrap h2, #home_wrap a', {x: -100, autoAlpha: 0})
+    },
+    enter(el, done) {
+      var tl = new TimelineLite({onComplete:done, ease: Back.easeInOut.config(1.7)});
+      tl.to('#home_wrap h1', 0.5, { x: 0, autoAlpha: 1 })
+        .to('#home_wrap h2', 0.5, { x: 0, autoAlpha: 1 }, "-=0.25")
+        .to('#home_wrap a', 0.5, { x: 0, autoAlpha: 1 }, "-=0.35")
+    },
+    afterEnter(el) {},
+    enterCancelled(el) {},
+    beforeLeave(el) {},
+    leave(el, done) {
+      var tl = new TimelineLite({onComplete:done, ease: Back.easeInOut.config(1.7)});
+      tl
+        .to('#home_wrap a', 0.5, { x: -100, autoAlpha: 0 })
+        .to('#home_wrap h2', 0.5, { x: -100, autoAlpha: 0 }, "-=0.25")
+        .to('#home_wrap h1', 0.5, { x: -100, autoAlpha: 0 }, "-=0.35")
+    },
+    // appear() {
+    //   console.log('whhaatt');
+      
+    // },
+    afterLeave(el){},
+    leaveCancelled(el) {}
+  },
   computed: {
     pageData: function() {
       return this.$store.state.pages[0]
@@ -37,6 +66,11 @@ export default {
         if (this.$store.state.workState == true ) {
             fullpage_api.destroy('all')
         } 
+
+      //         var tl = new TimelineLite({ease: Power2.easeInOut});
+      // tl.from('#home_wrap h1', 0.5, { x: -100, autoAlpha: 0 })
+      //   .from('#home_wrap h2', 0.5, { x: -100, autoAlpha: 0 }, "-=0.25")
+      //   .from('#home_wrap a', 0.5, { x: -100, autoAlpha: 0 }, "-=0.35")
 
       // console.log(this.$store.state.categories);
       // console.log(this.$store.state.projects);

@@ -1,6 +1,7 @@
 <template>
 
     <section>
+        <div class="screen-half"></div>
         <div class="work-wrap" id="work">
             <div v-for="project in projects" :key="project.index" class="section work-item" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }">
                 <div class="section_wrap">
@@ -34,6 +35,30 @@ export default {
         return {
             activeSlide: 1
         }
+    },
+    transition: {
+        duration: 750,
+        css: false,
+        beforeEnter(el) {
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1})
+        },
+        enter(el, done) {
+            TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
+        },
+        afterEnter(el) {
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0})
+        },
+        enterCancelled(el) {},
+        beforeLeave(el) {
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1})
+        },
+        leave(el, done) {
+            TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
+        },
+        afterLeave(el){
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0})
+        },
+        leaveCancelled(el) {}
     },
     mounted(context) {
         
@@ -76,6 +101,7 @@ export default {
                     // console.log(this.index);
                     var tl = new TimelineLite
                     tl.staggerFrom(titleArr[this.index].chars, 0.8, {opacity:0, scale:0.5, y:80, rotationX:90, transformOrigin:"0% 0 0",  ease:Back.easeOut}, 0.015, "+=0.5");
+                    tl.delay(0.75); 
                     navScore.innerHTML = this.index + 1
                 },
                 onLeave: function(origin, destination, direction){

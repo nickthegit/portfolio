@@ -63,9 +63,9 @@ module.exports = {
   //   { src: '~/node_modules/waypoints/lib/noframework.waypoints.js', ssr: false }
   // ],
   
-    plugins: [
-      { src: '~/plugins/vue-waypoint', ssr: false }
-    ],
+    // plugins: [
+    //   { src: '~/plugins/vue-waypoint', ssr: false }
+    // ],
   build: {
     vendor: [
       'gsap/TweenMax',

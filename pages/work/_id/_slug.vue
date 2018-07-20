@@ -1,5 +1,6 @@
 <template>
     <div class="work-item-page">
+        <div class="screen-half"></div>
         <section class="hero-wrap">
             <div class="hero-img full_width">
                 <responsiveimage :imageObj="project.acf.feature_image"/>
@@ -17,7 +18,7 @@
         </section>
 
         <main>
-            <section v-for="section in project.acf.content" :key="section.index" v-bind:class="{ work_img: section.acf_fc_layout == 'image', work_vid: section.acf_fc_layout == 'video', full_width: section.media_size == 'full_width', contained: section.media_size == 'contained', contained_narrow: section.media_size == 'narrow' }">
+            <section class="wp_section" v-for="section in project.acf.content" :key="section.index" v-bind:class="{ work_img: section.acf_fc_layout == 'image', work_vid: section.acf_fc_layout == 'video', full_width: section.media_size == 'full_width', contained: section.media_size == 'contained', contained_narrow: section.media_size == 'narrow' }">
                 <responsiveimage v-if="section.acf_fc_layout == 'image'" :imageObj="section.image_content"/>
                 <video v-if="section.acf_fc_layout == 'video'" controls muted>
                     <source :src="section.video_content.url" type="video/mp4">
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+import TweenMax from 'gsap'
 
 import arrowright from '~/components/icons/arrows/arrowright.vue'
 import arrowleft from '~/components/icons/arrows/arrowleft.vue'
@@ -56,11 +58,53 @@ export default {
         arrowleft,
         responsiveimage
     },
+    transition: {
+        duration: 750,
+        css: false,
+        beforeEnter(el) {
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1})
+        },
+        enter(el, done) {
+            TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
+        },
+        afterEnter(el) {
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0})
+        },
+        enterCancelled(el) {},
+        beforeLeave(el) {
+            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1})
+        },
+        leave(el, done) {
+            TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
+        },
+        afterLeave(el){
+            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0})
+        },
+        leaveCancelled(el) {}
+    },
     mounted() {
         if (process.browser) {
             if (this.$store.state.workState == true ) {
                 fullpage_api.destroy()
             }
+            require('waypoints/lib/noframework.waypoints.min');
+            var lzyld = document.querySelectorAll('.wp_section');
+            for (let i = 0; i < lzyld.length; i++) {
+                TweenMax.set(lzyld[i], {autoAlpha: 0, y: 100})
+                var waypoint = new Waypoint({
+                    element: lzyld[i],
+                    handler: function(direction) {
+                        if(direction == 'down') {
+                            // console.log(this)
+                            TweenMax.to(lzyld[i], 0.5, {autoAlpha: 1, y: 0})
+                        }
+                    },
+                    offset: '90%'
+                })
+                
+            }
+            
+
             // console.log(this.projectii);
             // console.log(this.project);
         }
@@ -87,7 +131,6 @@ export default {
                     }
                 }
             }  
-
             return projObj
         }
     }
@@ -98,6 +141,7 @@ export default {
 
     @import "~/assets/sass/base/_variables.scss";
     @import "~/assets/sass/base/_mediaquery.scss";
+
     .work-item-page {
         text-align: center;
     }
@@ -157,6 +201,9 @@ export default {
             }
         }
     }
+    .wp_section {
+        opacity: 0;
+    }
     .work_img {
         margin-bottom: 40px;
         img {
@@ -205,6 +252,22 @@ export default {
             border-right: solid 1px $grey;
             text-align: left;
             left: 0;
+        }
+        @include breakpoint(mobile) {
+            .next, .prev {
+                // position: relative;
+                position: absolute;
+                width: 50%;
+                display: inline-block;
+                // border-right: none;
+                // border-left: none;
+                h2 {
+                    display: none;
+                }
+                .arrow {
+                    padding-bottom: 0;
+                }
+            }
         }
     }
 </style>
