@@ -2,18 +2,18 @@
     <div class="work-item-page">
         <div class="screen-half"></div>
         <section class="hero-wrap">
-            <div class="hero-img full_width">
+            <div v-if="project.acf.feature_image" class="hero-img full_width">
                 <responsiveimage :imageObj="project.acf.feature_image"/>
             </div>
             <div class="hero-text-wrap contained_narrow">
-                <h1>{{ project.acf.project_title }}</h1>
-                <h3><a>{{ project.acf.employer }} </a><a v-if="project.acf.link" :href="project.acf.link" target="_blank">| <span id="link-svg"><svg viewBox="0 0 800 800"><path d="M321.2 736.73782c-71.1 71.1-186.8 71.1-257.9 0-71.1-71.1-71.1-186.8 0-257.9l143.3-143.3c71.1-71.1 186.8-71.1 257.9 0 10.5 10.5 30.3 26.2 30.2 42.9-.1 16.8-13.7 30.3-30.5 30.3-16.7-.1-30.2-13.6-42.7-30.2-48-48-123.9-48-171.9 0l-143.3 143.3c-48 48-48 123.9 0 171.9s123.9 48 171.9 0l136.1-136.1c11.7-12 31-12.3 43-.6 12 11.7 12.3 31 .6 43l-.6.6-136.1 136.1zm272.2-272.3c-71.1 71.1-186.8 71.1-257.9 0-11.9-11.9-11.9-31.1 0-43 11.9-11.9 31.1-11.9 43 0 48 48 123.9 48 171.9 0l143.3-143.3c48-48 48-123.9 0-171.9s-123.9-48-171.9 0l-136.1 136.1c-11.7 12-30.9 12.3-43 .6-12-11.7-12.3-30.9-.6-43l.6-.6 136.1-136.1c71.1-71.1 186.8-71.1 257.9 0 71.1 71.1 71.1 186.8 0 257.9l-143.3 143.3z"/></svg></span> Link</a></h3>
-                <ul class="tags">
+                <h1 v-if="project.acf.project_title">{{ project.acf.project_title }}</h1>
+                <h3><a v-if="project.acf.employer">{{ project.acf.employer }} </a><a v-if="project.acf.link" :href="project.acf.link" target="_blank">| <span id="link-svg"><svg viewBox="0 0 800 800"><path d="M321.2 736.73782c-71.1 71.1-186.8 71.1-257.9 0-71.1-71.1-71.1-186.8 0-257.9l143.3-143.3c71.1-71.1 186.8-71.1 257.9 0 10.5 10.5 30.3 26.2 30.2 42.9-.1 16.8-13.7 30.3-30.5 30.3-16.7-.1-30.2-13.6-42.7-30.2-48-48-123.9-48-171.9 0l-143.3 143.3c-48 48-48 123.9 0 171.9s123.9 48 171.9 0l136.1-136.1c11.7-12 31-12.3 43-.6 12 11.7 12.3 31 .6 43l-.6.6-136.1 136.1zm272.2-272.3c-71.1 71.1-186.8 71.1-257.9 0-11.9-11.9-11.9-31.1 0-43 11.9-11.9 31.1-11.9 43 0 48 48 123.9 48 171.9 0l143.3-143.3c48-48 48-123.9 0-171.9s-123.9-48-171.9 0l-136.1 136.1c-11.7 12-30.9 12.3-43 .6-12-11.7-12.3-30.9-.6-43l.6-.6 136.1-136.1c71.1-71.1 186.8-71.1 257.9 0 71.1 71.1 71.1 186.8 0 257.9l-143.3 143.3z"/></svg></span> Link</a></h3>
+                <ul v-if="project.categories" class="tags">
                     <li v-for="tag in project.categories" :key="tag.index">
                         {{ tag }}
                     </li>
                 </ul>
-                <article v-html="project.acf.summary"></article>
+                <article v-if="project.acf.summary" v-html="project.acf.summary"></article>
             </div>
         </section>
 
@@ -60,28 +60,69 @@ export default {
     },
     transition: {
         duration: 750,
-        css: false,
-        beforeEnter(el) {
-            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1, width: '100%'})
-            // console.log('dave')
-        },
-        enter(el, done) {
-            TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
-        },
-        afterEnter(el) {
-            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0, width: '0%'})
-        },
-        enterCancelled(el) {},
-        beforeLeave(el) {
-            TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1, width: '100%'})
-        },
-        leave(el, done) {
-            TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
-        },
-        afterLeave(el){
-            TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0, width: '0%'})
-        },
-        leaveCancelled(el) {}
+        css: false
+    },
+    transition (to, from) {
+        return {
+            beforeEnter(el) {
+                if(to.path == this.$store.state.slugPage.next) {
+                    TweenMax.set(el, {x: '50%', autoAlpha: 0 })
+                } else if(to.path == this.$store.state.slugPage.prev) {
+                    TweenMax.set(el, {x: '-50%', autoAlpha: 0 })
+                } else {     
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })       
+                    TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1, width: '100%'})
+                }
+            },
+            enter(el, done) {
+                if(from.path == this.$store.state.slugPage.prev) {
+                    TweenMax.to(el, 0.75, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
+                } else if(from.path == this.$store.state.slugPage.next) {
+                    TweenMax.to(el, 0.75, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
+                } else {
+                    TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }); 
+                }
+            },
+            afterEnter(el) {
+                if(from.path == this.$store.state.slugPage.prev || from.path == this.$store.state.slugPage.next) {
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
+                } else {  
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
+                    TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0, width: '100%'})
+                }
+            },
+            enterCancelled(el) {
+                TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+            },
+            beforeLeave(el) {
+                if(to.path == this.$store.state.slugPage.next || to.path == this.$store.state.slugPage.prev) {
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
+                } else {  
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+                    TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1, width: '100%'})
+                }
+            },
+            leave(el, done) {
+                if(to.path == this.$store.state.slugPage.next) {
+                    TweenMax.to(el, 0.75, { x: '-50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
+                } else if(to.path == this.$store.state.slugPage.prev) {
+                    TweenMax.to(el, 0.75, { x: '50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
+                } else {
+                    TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
+                }
+            },
+            afterLeave(el){
+                if(to.path == this.$store.state.slugPage.next || to.path == this.$store.state.slugPage.prev) {
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
+                } else {  
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+                    TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0, width: '0%'})
+                }
+            },
+            leaveCancelled(el) {
+                TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+            }
+        }
     },
     mounted() {
         if (process.browser) {
@@ -104,7 +145,13 @@ export default {
                 })
                 
             }
-            
+
+            // add current/prev/next slug o store to get in transition function
+            this.$store.commit('changeSlugState', {
+                current: '/work/' + this.project.id + '/' + this.project.slug,
+                prev: (!this.project.prev) ? '' : '/work/' + this.project.prev.id + '/' + this.project.prev.slug,
+                next: (!this.project.next) ? '' : '/work/' + this.project.next.id + '/' + this.project.next.slug                
+            })
 
             // console.log(this.projectii);
             // console.log(this.project);
@@ -128,7 +175,7 @@ export default {
                         ...this.$store.state.projects[p], 
                         prev: this.$store.state.projects[p-1],
                         next: this.$store.state.projects[p+1],
-                        categories: cats
+                        categories: cats,
                     }
                 }
             }  
@@ -220,6 +267,7 @@ export default {
     .next-prev-container {
         position: relative;
         width: 100%;
+        z-index: 40;
         h2 {
             font-family: 'NexaLight', Arial, Helvetica, sans-serif;
         }

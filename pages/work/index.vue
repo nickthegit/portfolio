@@ -21,7 +21,6 @@
 <script>
 
 import TweenMax from 'gsap'
-// import SplitText from "~/assets/js/SplitText";
 
 import arrowright from '~/components/icons/arrows/arrowright.vue'
 import arrowleft from '~/components/icons/arrows/arrowleft.vue'

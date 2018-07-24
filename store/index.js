@@ -7,7 +7,12 @@ const createStore = () => {
             categories: [],
             projects: [],
             pages: [],
-            workState: false
+            workState: false,
+            slugPage: {
+                current: '',
+                prev: '',
+                next: ''
+            }
         },
         mutations: {
             setCategories(state, data) {
@@ -21,7 +26,12 @@ const createStore = () => {
             },
             toggleFullPage(state, value) {
                 state.workState = value
-            }            
+            },
+            changeSlugState(state, value) {
+                state.slugPage.current = value.current
+                state.slugPage.prev = value.prev
+                state.slugPage.next = value.next
+            }             
         },  
         actions: {
             nuxtServerInit(vuexContext, context) {

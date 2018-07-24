@@ -1,7 +1,7 @@
 <template>
     <div :class="{navOpen: isActive}" class="menu">
         <header>
-            <a href="/" class="brand-logo"><logo/></a>
+            <nuxt-link to="/" class="brand-logo"><logo/></nuxt-link>
             <button class="hamburger hamburger--collapse" :class="{isActive: isActive}" @click="toggleNav" type="button">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
