@@ -62,15 +62,6 @@ export default {
   },
   mounted() {
     if (process.browser) {
-    
-        if (this.$store.state.workState == true ) {
-            fullpage_api.destroy('all')
-        } 
-
-      //         var tl = new TimelineLite({ease: Power2.easeInOut});
-      // tl.from('#home_wrap h1', 0.5, { x: -100, autoAlpha: 0 })
-      //   .from('#home_wrap h2', 0.5, { x: -100, autoAlpha: 0 }, "-=0.25")
-      //   .from('#home_wrap a', 0.5, { x: -100, autoAlpha: 0 }, "-=0.35")
 
       // console.log(this.$store.state.categories);
       // console.log(this.$store.state.projects);

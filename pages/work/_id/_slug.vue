@@ -69,18 +69,17 @@ export default {
                     TweenMax.set(el, {x: '50%', autoAlpha: 0 })
                 } else if(to.path == this.$store.state.slugPage.prev) {
                     TweenMax.set(el, {x: '-50%', autoAlpha: 0 })
-                } else {     
-                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })       
+                } else {            
                     TweenMax.set('.screen-half', {x: '0%', autoAlpha: 1, width: '100%'})
                 }
             },
             enter(el, done) {
                 if(from.path == this.$store.state.slugPage.prev) {
-                    TweenMax.to(el, 0.75, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to(el, 0.5, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
                 } else if(from.path == this.$store.state.slugPage.next) {
-                    TweenMax.to(el, 0.75, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to(el, 0.5, { x: '0%', autoAlpha: 1, onComplete:done, ease: Power1.easeInOut }); 
                 } else {
-                    TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to('.screen-half', 0.75, { x: '-100%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
                 }
             },
             afterEnter(el) {
@@ -88,47 +87,41 @@ export default {
                     TweenMax.set(el, {x: '0%', autoAlpha: 1 })
                 } else {  
                     TweenMax.set(el, {x: '0%', autoAlpha: 1 })
-                    TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0, width: '100%'})
+                    TweenMax.set('.screen-half', {x: '100%', autoAlpha: 0, width: '0%'})
                 }
             },
-            enterCancelled(el) {
-                TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
-            },
+            enterCancelled(el) {},
             beforeLeave(el) {
                 if(to.path == this.$store.state.slugPage.next || to.path == this.$store.state.slugPage.prev) {
                     TweenMax.set(el, {x: '0%', autoAlpha: 1 })
                 } else {  
-                    TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
                     TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1, width: '100%'})
                 }
             },
             leave(el, done) {
                 if(to.path == this.$store.state.slugPage.next) {
-                    TweenMax.to(el, 0.75, { x: '-50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to(el, 0.5, { x: '-50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
                 } else if(to.path == this.$store.state.slugPage.prev) {
-                    TweenMax.to(el, 0.75, { x: '50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to(el, 0.5, { x: '50%', autoAlpha: 0, onComplete:done, ease: Power1.easeInOut }); 
                 } else {
-                    TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
+                    TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }).delay(0.05); 
                 }
             },
             afterLeave(el){
                 if(to.path == this.$store.state.slugPage.next || to.path == this.$store.state.slugPage.prev) {
                     TweenMax.set(el, {x: '0%', autoAlpha: 1 })
                 } else {  
-                    TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
+                    TweenMax.set(el, {x: '0%', autoAlpha: 1 })
                     TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0, width: '0%'})
                 }
             },
-            leaveCancelled(el) {
-                TweenMax.set(el, {x: '0%', autoAlpha: 1 }) 
-            }
+            leaveCancelled(el) {}
         }
     },
     mounted() {
         if (process.browser) {
-            if (this.$store.state.workState == true ) {
-                fullpage_api.destroy()
-            }
+
             require('waypoints/lib/noframework.waypoints.min');
             var lzyld = document.querySelectorAll('.wp_section');
             for (let i = 0; i < lzyld.length; i++) {
@@ -191,6 +184,8 @@ export default {
     @import "~/assets/sass/base/_mediaquery.scss";
 
     .work-item-page {
+        position: absolute;
+        top: 0;
         text-align: center;
     }
     .hero-wrap {
@@ -267,7 +262,6 @@ export default {
     .next-prev-container {
         position: relative;
         width: 100%;
-        z-index: 40;
         h2 {
             font-family: 'NexaLight', Arial, Helvetica, sans-serif;
         }

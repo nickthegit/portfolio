@@ -52,7 +52,10 @@ export default {
             TweenMax.set('.screen-half', {x: '100%', autoAlpha: 1, width: '100%'})
         },
         leave(el, done) {
-            TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete:done, ease: Power1.easeInOut }); 
+            TweenMax.to('.screen-half', 0.75, { x: '0%', onComplete: function() {
+                fullpage_api.destroy()
+                done()
+            }, ease: Power1.easeInOut }); 
         },
         afterLeave(el){
             TweenMax.set('.screen-half', {x: '0%', autoAlpha: 0, width: '0%'})
