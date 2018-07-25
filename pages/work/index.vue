@@ -3,7 +3,7 @@
     <section>
         <div class="screen-half"></div>
         <div class="work-wrap" id="work">
-            <div v-for="project in projects" :key="project.index" class="section work-item" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + project.acf.feature_image.url + ')' }">
+            <div v-for="project in projects" :key="project.index" class="section work-item" @click="toCaseStudy(project.id, project.slug)" :style="{ backgroundImage: 'url(' + projectImg(project.acf.feature_image) + ')' }">
                 <div class="section_wrap">
                     <div class="title_wrap">
                         <h1 id="titleText" class="titleH1">{{ project.acf.project_title }}</h1>
@@ -65,10 +65,6 @@ export default {
     mounted(context) {
         
         if (process.browser) {
-            
-            // const windowWidth = window.innerWidth;
-            // console.log(this.$store.state.projects);
-            // console.log(this.projects.length);
 
             require('~/assets/js/fittext.js')
             require('~/assets/js/SplitText')
@@ -84,69 +80,60 @@ export default {
             }
             
             var navScore = document.getElementById('nav_score')
-            // console.log(titleArr);
-            
-
-            // var splitTitle = new SplitText(".titleH1", {type:"chars"}); 
-
-            // console.log(splitTitle);
             
     
             new fullpage('#work', {
                 autoScrolling:true,
                 scrollingSpeed: 700,
-                // navigation: true,
-                // navigationPosition: 'right',
                 easingcss3: 'cubic-bezier(1.000, -0.040, 0.540, 1.005)',
                 licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
                 afterRender: function(){
-                    // console.log(this.index);
                     var tl = new TimelineLite
                     tl.staggerFrom(titleArr[this.index].chars, 0.8, {opacity:0, scale:0.5, y:80, rotationX:90, transformOrigin:"0% 0 0",  ease:Back.easeOut}, 0.015, "+=0.5");
                     tl.delay(0.75); 
                     navScore.innerHTML = this.index + 1
                 },
                 onLeave: function(origin, destination, direction){
-                    // var leavingSection = this;
-                    // console.log(destination);
 
                     var tl = new TimelineLite
                     tl.staggerFrom(titleArr[destination.index].chars, 0.8, {opacity:0, scale:0.5, y:80, rotationX:90, transformOrigin:"0% 0 0",  ease:Back.easeOut}, 0.015, "+=0.5");
 
                     navScore.innerHTML = destination.index + 1
-                    
-                    // //after leaving section 2
-                    // if(origin.index == 1 && direction =='down'){
-                    //     alert("Going to section 3!");
-                    // }
-
-                    // else if(origin.index == 1 && direction == 'up'){
-                    //     alert("Going to section 1!");
-                    // }
                 }
             });
             if (this.$store.state.workState == false ) {
                 this.$store.commit('toggleFullPage', true)
             }
+            console.log(window.innerWidth)
+            // console.log('------------------------------------');
+            // console.log(this.project.acf.feature_image);
+            // console.log('------------------------------------');
+            console.log(this.$store.state.projects[0].acf.feature_image.sizes);
+            
 
         }
     },  
     computed: {
         projects: function() {
             return this.$store.state.projects
-        },
-        spanHeight: function() {
-            var val = 100 / this.projects.length + '%'
-            return val
         }
     },
     methods: {
         toCaseStudy(id, slug) {
-            // console.log(slug + ' ' + id);
             this.$router.push('/work/' + id + '/' + slug)
         },
-        goToTarget(val) {
-            console.log(val);
+        projectImg: (proj) => {
+            if (process.browser) {
+                if (window.innerWidth < 481) {
+                    console.log('mobile');
+                    return proj.sizes.mobile_img_large_x2_square
+                } else if(window.innerWidth > 480 && window.innerWidth < 1921) {
+                    console.log('tablet');
+                    return proj.sizes.tablet_img_large_x2_cropped
+                } else {
+                    return proj.sizes.desktop_img
+                }
+            }
         }
     }
 }
