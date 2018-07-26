@@ -11,7 +11,8 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Portfolio for Frontend Developer Nick John' },
+      { hid: 'description', name: 'description', content: 'This is a working portfolio for Web Developer Nick John. From Yeovil, Somerset he specialises in Frontend experiences at Rosie Lee.' },
+      { hid: 'keywords', name: 'keywords', content: 'Nick John, Developer, VueJS, UI, Frontend, Websites, Web, Javascript, Web Developer, front-end, front end, Bristol, Yeovil, Bath, Somerset, Dorset, UK, HTML, CSS, Javascript' },
       {
         hid: `og:title`,
         property: 'og:title',
@@ -30,7 +31,7 @@ module.exports = {
       {
         hid: `og:description`,
         property: 'og:description',
-        content: 'Working portfolio for Frontend Developer Nick John'
+        content: 'This is a working portfolio for Web Developer Nick John. From Yeovil, Somerset he specialises in Frontend experiences at Rosie Lee.'
       }
     ],
     link: [
@@ -41,6 +42,12 @@ module.exports = {
     '@/assets/sass/style.scss'
   ],
   generate: {
+    minify: {
+      collapseWhitespace: true,
+      removeAttributeQuotes: true,
+      removeComments: true,
+      removeTagWhitespace: true
+    },
     routes: function (callback) {
       axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
       .then((res) => {
@@ -59,13 +66,7 @@ module.exports = {
   /*
   ** Build configuration
   */
-  // plugins: [
-  //   { src: '~/node_modules/waypoints/lib/noframework.waypoints.js', ssr: false }
-  // ],
-  
-    // plugins: [
-    //   { src: '~/plugins/vue-waypoint', ssr: false }
-    // ],
+
   build: {
     vendor: [
       'gsap/TweenMax',

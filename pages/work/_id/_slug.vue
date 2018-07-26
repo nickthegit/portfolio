@@ -146,8 +146,8 @@ export default {
                 next: (!this.project.next) ? '' : '/work/' + this.project.next.id + '/' + this.project.next.slug                
             })
 
-            // console.log(this.projectii);
-            // console.log(this.project);
+            console.log(this.project);
+            // console.log(this.project.acf.project_title);
         }
     },
     computed: {
@@ -173,6 +173,11 @@ export default {
                 }
             }  
             return projObj
+        }
+    },
+    head() {
+        return {
+            title: 'Nick John - ' + this.project.acf.project_title
         }
     }
 }

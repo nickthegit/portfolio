@@ -30,6 +30,11 @@ export default {
         arrowright,
         arrowleft
     },
+    head() {
+        return {
+            title: 'Nick John - Work'
+        }
+    },
     data() {
         return {
             activeSlide: 1
@@ -104,13 +109,6 @@ export default {
             if (this.$store.state.workState == false ) {
                 this.$store.commit('toggleFullPage', true)
             }
-            console.log(window.innerWidth)
-            // console.log('------------------------------------');
-            // console.log(this.project.acf.feature_image);
-            // console.log('------------------------------------');
-            console.log(this.$store.state.projects[0].acf.feature_image.sizes);
-            
-
         }
     },  
     computed: {
@@ -125,13 +123,13 @@ export default {
         projectImg: (proj) => {
             if (process.browser) {
                 if (window.innerWidth < 481) {
-                    console.log('mobile');
                     return proj.sizes.mobile_img_large_x2_square
                 } else if(window.innerWidth > 480 && window.innerWidth < 1921) {
-                    console.log('tablet');
                     return proj.sizes.tablet_img_large_x2_cropped
-                } else {
+                } else if( window.innerWidth > 1920) {
                     return proj.sizes.desktop_img
+                } else {
+                    return proj.url
                 }
             }
         }

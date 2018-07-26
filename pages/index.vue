@@ -76,11 +76,7 @@ export default {
     return {
       htmlAttrs: {
           class: 'home-page'
-      },
-      meta: [
-        { hid: 'description', name: 'description', content: this.pageData.acf.meta_description },
-        { hid: 'keywords', name: 'keywords', content: this.pageData.acf.meta_keywords }
-      ]
+      }
     }
   }
 }

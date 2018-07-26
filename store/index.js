@@ -35,10 +35,10 @@ const createStore = () => {
         },  
         actions: {
             nuxtServerInit(vuexContext, context) {
-                return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories')
+                return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/categories?per_page=100')
                 .then( res => {
                     vuexContext.commit('setCategories', res.data)
-                    return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
+                    return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects?per_page=100')
                     .then( res => {
                         vuexContext.commit('setProjects', res.data)
                         return axios.get('https://nj-admin.co.uk/wp-json/wp/v2/pages')
