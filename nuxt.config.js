@@ -13,6 +13,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'This is a working portfolio for Web Developer Nick John. From Yeovil, Somerset he specialises in Frontend experiences at Rosie Lee.' },
       { hid: 'keywords', name: 'keywords', content: 'Nick John, Developer, VueJS, UI, Frontend, Websites, Web, Javascript, Web Developer, front-end, front end, Bristol, Yeovil, Bath, Somerset, Dorset, UK, HTML, CSS, Javascript' },
+      { name: 'google-site-verification', content: 'hhP3WImxTO-OaWO4xDoMsH2KLO7lIBvePEFvCwvchLc' },
       {
         hid: `og:title`,
         property: 'og:title',
