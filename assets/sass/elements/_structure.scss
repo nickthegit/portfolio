@@ -1,0 +1,60 @@
+// ========================================
+// strucutre
+// ========================================
+// .home-page {
+//     body {
+//         height: 1300vh;
+//     }
+// }
+
+body {
+    background-color: $black;
+    color: $white;
+    transition: background 0.5s ease-out;
+    // background-image: url('/assets/img/nj-background.jpg');
+    // background-size: 100%;
+    // background-position: fixed;
+    // background-repeat: no-repeat;
+    // &.body-light {
+    //     background: $white;
+    //     color: $black;        
+    // }
+}
+
+a { 
+    color: inherit !important; 
+    text-decoration: none;  
+}  
+
+div, textarea, select, input, button { outline: none; }
+
+.select-none {
+    user-select: none;
+}
+
+.full_width, .contained, .contained_narrow {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    img, video {
+        width: 100%;
+    }
+}
+.contained {
+    max-width: 1200px;
+}
+.contained_narrow {
+    max-width: 800px;
+}
+
+.screen-half {
+    width: 0;
+    height: 100%;
+    background: $black;
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    opacity: 0;
+}

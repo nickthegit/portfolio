@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Bludhaven';
+    src: url('~/assets/fonts/Bludhaven_Regular.eot');
+    src: local('Bludhaven_Regular'),
+        url('~/assets/fonts/Bludhaven_Regular.eot?#iefix') format('embedded-opentype'),
+        url('~/assets/fonts/Bludhaven_Regular.woff2') format('woff2'),
+        url('~/assets/fonts/Bludhaven_Regular.woff') format('woff'),
+        url('~/assets/fonts/Bludhaven_Regular.ttf') format('truetype'),
+        url('~/assets/fonts/Bludhaven_Regular.svg#Bludhaven_Regular') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NexaLight';
+    src: url('~/assets/fonts/NexaLight.eot');
+    src: local('Nexa Light'), local('NexaLight'),
+        url('~/assets/fonts/NexaLight.eot?#iefix') format('embedded-opentype'),
+        url('~/assets/fonts/NexaLight.woff2') format('woff2'),
+        url('~/assets/fonts/NexaLight.woff') format('woff'),
+        url('~/assets/fonts/NexaLight.ttf') format('truetype'),
+        url('~/assets/fonts/NexaLight.svg#NexaLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NexaBold';
+    src: url('~/assets/fonts/NexaBold.eot');
+    src: local('Nexa Bold'), local('NexaBold'),
+        url('~/assets/fonts/NexaBold.eot?#iefix') format('embedded-opentype'),
+        url('~/assets/fonts/NexaBold.woff2') format('woff2'),
+        url('~/assets/fonts/NexaBold.woff') format('woff'),
+        url('~/assets/fonts/NexaBold.ttf') format('truetype'),
+        url('~/assets/fonts/NexaBold.svg#NexaBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
