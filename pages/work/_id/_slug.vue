@@ -19,7 +19,7 @@
 
         <main>
             <section class="wp_section" v-for="section in project.acf.content" :key="section.index" v-bind:class="{ work_img: section.acf_fc_layout == 'image', work_vid: section.acf_fc_layout == 'video', full_width: section.media_size == 'full_width', contained: section.media_size == 'contained', contained_narrow: section.media_size == 'narrow' }">
-                <responsiveimage v-if="section.acf_fc_layout == 'image'" :imageObj="section.image_content.sizes.fallback_img"/>
+                <responsiveimage v-if="section.acf_fc_layout == 'image'" :imageObj="section.image_content"/>
                 <video v-if="section.acf_fc_layout == 'video'" controls muted  :poster="project.acf.feature_image.sizes.tablet_img_large_cropped">
                     <source :src="section.video_content.url" type="video/mp4">
                     Your browser does not support the video tag.
