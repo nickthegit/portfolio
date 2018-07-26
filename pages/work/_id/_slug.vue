@@ -146,7 +146,7 @@ export default {
                 next: (!this.project.next) ? '' : '/work/' + this.project.next.id + '/' + this.project.next.slug                
             })
 
-            console.log(this.project);
+            // console.log(this.project);
             // console.log(this.project.acf.project_title);
         }
     },
