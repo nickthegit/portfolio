@@ -42,6 +42,20 @@ module.exports = {
   css: [
     '@/assets/sass/style.scss'
   ],
+  modules: ['@nuxtjs/sitemap'],
+  sitemap: {
+    hostname: 'https://nickjohn.co.uk/',
+    routes: function (callback) {
+      axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
+      .then((res) => {
+        var routes = res.data.map((project) => {
+          return '/work/' + project.id + '/' + project.slug
+        })
+        callback(null, routes)
+      })
+      .catch(callback)
+    }
+  },
   generate: {
     minify: {
       collapseWhitespace: true,
