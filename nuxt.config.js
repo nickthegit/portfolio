@@ -50,24 +50,8 @@ module.exports = {
       '/',
       '/work'
     ]
-    // routes () function (callback) {
-    //   axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
-    //   .then((res) => {
-    //     var routes = res.data.map((project) => {
-    //       return '/work/' + project.id + '/' + project.slug
-    //     })
-    //     callback(null, routes)
-    //   })
-    //   .catch(callback)
-    // }
   },
   generate: {
-    minify: {
-      collapseWhitespace: true,
-      removeAttributeQuotes: true,
-      removeComments: true,
-      removeTagWhitespace: true
-    },
     routes: function (callback) {
       axios.get('https://nj-admin.co.uk/wp-json/wp/v2/projects')
       .then((res) => {
