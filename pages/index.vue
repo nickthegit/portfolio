@@ -232,7 +232,7 @@ section {
   box-sizing: border-box;
 }
 .skills-grid {
-  width: 100%;
+  width: 80%;
   height: auto;
   // background: red;
   display: grid;
@@ -260,10 +260,12 @@ section {
     }
   }
   @include breakpoint(tablet) {
+    width: 100%;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: auto auto auto;
   }
   @include breakpoint(mobile) {
+    width: 100%;
     padding-top: 0px;
     grid-template-columns: 33.3333% 33.3333% 33.3333%;
     grid-template-rows: auto auto auto auto;
